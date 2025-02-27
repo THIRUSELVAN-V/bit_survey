@@ -82,16 +82,18 @@ module.exports = {
         },
         colors: {
           primary: {
-            DEFAULT: '#009FF5',
-            foreground: '#FFEFE5',
-            '50': '#f97642', 
-            '100': '#fcbaa1',
-            '200': '#f97642',
-            '400': '#f74d0a',
-            '500': '#c13b06',
-            '600': '#892a04',
-            '700': '#fe4a2314', //c
-            '800': '#FA6510' //c
+            DEFAULT: '#7F56D9',
+            foreground: '#F3E8FF', // Set primary to your desired color
+            '50': '#F3E8FF',
+            '100': '#E9D5FF',
+            '200': '#D8B4FE',
+            '300': '#C084FC',
+            '400': '#A855F7',
+            '500': '#7F56D9', // This should match your desired color
+            '600': '#6B21A8',
+            '700': '#718EBF', //used
+            '800': '#4A148C',
+            '900': '#3B0C7E',
           },
           secondary: {
             DEFAULT: '#AAB9C5',

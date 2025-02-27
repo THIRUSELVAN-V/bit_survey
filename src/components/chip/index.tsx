@@ -75,9 +75,8 @@ export const Chip = ({
 
         // Define border color based on chip variant
         const borderColorClass = isDisabled
-        ? 'border-2 border-content2-200' // Disabled state border color with 2px thickness
-        : `border-2 ${LabelColorSourceMap[chipVariant as keyof typeof LabelColorSourceMap] || 'border-primary'}`;
-    
+        ? 'border-content2-200' // Disabled state border color
+        : `border ${borderColor || 'border-primary'}`;
     
     // Determine the hover effect class based on the chip variant
     const hoverClass = !isDisabled
@@ -88,7 +87,7 @@ export const Chip = ({
             size={size} // Size of the chip
             avatar={avatar} // Avatar element
             radius={radius} // Border radius
-            variant="bordered" // Variant type
+            variant="bordered" // Variant typeF
             isDisabled={isDisabled} // Disabled state
             endContent={endContent} // End content element
             isCloseable={isCloseable} // Closeable state
