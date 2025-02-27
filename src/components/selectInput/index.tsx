@@ -1,5 +1,4 @@
 import { Select, SelectItem } from "@heroui/react";
-import { IoMdArrowDropdown } from "react-icons/io"; 
 
 interface SelectInputProps {
   options: { key: string; label: string }[];
@@ -32,7 +31,7 @@ export const SelectInput = ({
       className={className} 
     >
       {options?.map((option) => (
-        <SelectItem key={option.key} value={option.key}>
+        <SelectItem key={option.key} >
           {option.label}
         </SelectItem>
       ))}
