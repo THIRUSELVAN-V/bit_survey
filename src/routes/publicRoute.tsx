@@ -5,6 +5,7 @@ export const PublicRoute = () => {
   return (
     <Routes>
         <Route path="/" element={<Thiru/>}/>
+        
     </Routes>
   )
 }
