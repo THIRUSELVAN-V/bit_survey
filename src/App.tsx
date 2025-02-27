@@ -1,9 +1,14 @@
-import React from 'react'
+
+import {BrowserRouter as Router } from 'react-router-dom';
+import { PublicRoute } from './routes';
 
 const App = () => {
+  
   return (
-    <div className='text-red-600 font-bold'>App</div>
-  )
-}
+    <Router>
+        <PublicRoute/>
+    </Router>
+  );
+};
 
-export default App
+export default App;
