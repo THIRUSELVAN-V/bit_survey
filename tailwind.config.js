@@ -82,25 +82,26 @@ module.exports = {
         },
         colors: {
           primary: {
-            DEFAULT: '#FF7014',
+            DEFAULT: '#009FF5',
             foreground: '#FFEFE5',
-            '50': '#F0DFD5',
-            '100': '#FF7014',
-            '200': '#AD4400',
-            '400': '#FD6F14',
-            '500': '#662CC414',
-            '600': '#FF507214',
-            '700': '#fe4a2314',
-            '800': '#FA6510'
+            '50': '#f97642', 
+            '100': '#fcbaa1',
+            '200': '#f97642',
+            '400': '#f74d0a',
+            '500': '#c13b06',
+            '600': '#892a04',
+            '700': '#fe4a2314', //c
+            '800': '#FA6510' //c
           },
           secondary: {
-            DEFAULT: '#65686F',
+            DEFAULT: '#AAB9C5',
             foreground: '#E0E1E2',
-            '50': '#C5CBD1',
-            '100': '#65686F',
-            '200': '#32363F',
-            '300': '#F5F5F5',
-            '400': '#555E68',
+            '50': '#f4f4f4',
+            '100': '#f4f4f4',
+            '200': '#cdcdcd',
+            '300': '#a7a7a7',
+            '400': '#808080',
+            '500': '#5a5a5a',
           },
           success: {
             DEFAULT: '#51BC51',
@@ -112,6 +113,8 @@ module.exports = {
             '400': '#2A702A',
             '500': '#31D06E',
             '600': '#498F49',
+            '700': '#84ebb4',
+            '800': '#1fc16b',
           },
           warning: {
             DEFAULT: '#EA9A3E',
@@ -121,6 +124,8 @@ module.exports = {
             '300': '#9A5B13',
             '400': '#FFF5E3',
             '500': '#E8D1C3',
+            '600': '#ffdb43',
+            '700': '#dfb400',
           },
           danger: {
             DEFAULT: '#A51818',
@@ -129,6 +134,8 @@ module.exports = {
             '100': '#EB6A6A',
             '200': '#A51818',
             '300': '#E8BABA',
+            '400': '#fb3748',
+            '500': '#d00416',
             '1000': '#FD5367',
           } ,
           background: {
@@ -146,9 +153,9 @@ module.exports = {
             '900': '#DFDFDF',
           },
           content1: {
-            DEFAULT: '#FFFFFF',
+            DEFAULT: '#FAFAFC',
             foreground: '#EDF5FD',
-            '50': '#D5E3F0',
+            '50': '#D5E3F0', //c
             '100': '#97C3F0',
             '200': '#0B6BCB',
             '300': '#4E585E',
@@ -173,9 +180,9 @@ module.exports = {
             '1012': '#004C99',
           } ,
           content2: {
-            DEFAULT: '#555E68',
+            DEFAULT: '#8F90A6',
             foreground: '#EDF1F5',
-            '50': '#E3E7EB',
+            '50': '#E3E7EB', //c
             '100': '#DDE7EE',
             '200': '#CDD7E1',
             '300': '#9FA6AD',
