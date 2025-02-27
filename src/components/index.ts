@@ -9,3 +9,9 @@ export {ButtonComponent} from './button'
 export {IconButtonComponent} from './iconButton'
 
 export {Modals} from './modal'
+
+export {NumberInputComp} from './numberInput'
+
+export { ProgressComp } from './progressComp'
+
+export { SideBar} from './sideBar'
