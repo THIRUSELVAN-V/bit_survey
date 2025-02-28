@@ -46,7 +46,7 @@ export const SideBar = () => {
   };
 
   return (
-    <div className="flex flex-col h-screen bg-white shadow-lg w-64">
+    <div className="flex flex-col h-screen bg-white shadow-lg w-full">
       {/* Header */}
       <div className="">
         <div className="flex items-center gap-2 p-4">
@@ -60,7 +60,8 @@ export const SideBar = () => {
       </div>
 
       {/* Menu Items */}
-      <div className="h-[calc(97vh-160px)] overflow-y-auto"> {/* Fixed height for menu items */}
+      <div className="h-[calc(100vh-14
+      0px)] overflow-y-auto"> {/* Fixed height for menu items */}
         {menuItems.map((item) => (
           <button
             key={item.id}
