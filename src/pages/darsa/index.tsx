@@ -1,7 +1,8 @@
 import React from "react";
-import { Chip, NumberInputComp, ProgressComp, SelectInput, SideBar, SurveyOption } from "../../components"
+import { Chip, NumberInputComp, ProgressComp, SelectInput, SideBar, SurveyCard, SurveyOption } from "../../components"
 import { TabBar } from "../../components/switchTab";
 import { NumberInput } from "@heroui/react";
+import { PlusShield } from "../../assets/plusShield";
 
 
 
@@ -40,7 +41,7 @@ export const Darsa = () => {
 
   return (
     <div>
-      {/* <Chip
+       <Chip
         label="Completed"
         borderColor="border-[#1FC16B]"
       />
@@ -71,12 +72,20 @@ export const Darsa = () => {
         color="bg-purple-500"
         outlineColor="border-purple-300"
         label="Processing..."
-      /> */}
+      /> 
 
       {/* <SideBar /> */}
+<div className="w-[35vh]">
+      <SurveyOption
+        iconBgColor="bg-primary-600"
+        icon={<PlusShield/>}
+        title="Create survey"
+        description="Explore new paths"
+        // onChange={handleChange} // Optional
+      />
+</div>
 
-      <SurveyOption/>
-
+<SurveyCard/>
     </div>
   )
 }

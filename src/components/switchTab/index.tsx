@@ -75,7 +75,7 @@ export const TabBar = ({
                                 <p
                                     className={cn(
                                         'text-body2 leading-6 font-source',
-                                        'font-regular mb-[0.313rem]',
+                                        'font-semibold',
                                         activeTab === item?.id ? selectedTabColor : normalTabColor // Apply custom colors
                                     )}
                                 >
