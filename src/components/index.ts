@@ -20,4 +20,6 @@ export {SurveyOption} from './surveyOptions'
 
 export {Header} from './headder'
 
+export { SurveyCard } from './surveyCard'
+
 

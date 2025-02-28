@@ -90,9 +90,9 @@ module.exports = {
             '300': '#C084FC',
             '400': '#A855F7',
             '500': '#7F56D9', // This should match your desired color
-            '600': '#6B21A8',
+            '600': '#E7EDFF',
             '700': '#718EBF', //used
-            '800': '#4A148C',
+            '800': '#D3CBFB', //used
             '900': '#3B0C7E',
           },
           secondary: {
