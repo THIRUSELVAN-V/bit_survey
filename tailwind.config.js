@@ -157,9 +157,9 @@ module.exports = {
           content1: {
             DEFAULT: '#FAFAFC',
             foreground: '#EDF5FD',
-            '50': '#D5E3F0', //c
-            '100': '#97C3F0',
-            '200': '#0B6BCB',
+            '50': '#F5F7FA',  // used
+            '100': '#8BA3CB', //used
+            '200': '#718EBF', //used
             '300': '#4E585E',
             '400': '#FEDE00',
             '500': '#D9D9D9',

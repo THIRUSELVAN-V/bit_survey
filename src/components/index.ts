@@ -17,3 +17,7 @@ export { ProgressComp } from './progressComp'
 export { SideBar} from './sideBar'
 
 export {SurveyOption} from './surveyOptions'
+
+export {Header} from './headder'
+
+
