@@ -90,8 +90,9 @@ module.exports = {
             '400': '#f74d0a',
             '500': '#c13b06',
             '600': '#892a04',
-            '700': '#fe4a2314', //c
-            '800': '#FA6510' //c
+            '700': '#fe4a2314', 
+            '800': '#343C6A' ,
+            '900': '#E6EFF5' 
           },
           secondary: {
             DEFAULT: '#AAB9C5',
@@ -155,9 +156,9 @@ module.exports = {
           content1: {
             DEFAULT: '#FAFAFC',
             foreground: '#EDF5FD',
-            '50': '#D5E3F0', //c
-            '100': '#97C3F0',
-            '200': '#0B6BCB',
+            '50': '#F5F7FA',  // used
+            '100': '#8BA3CB', //used
+            '200': '#718EBF', //used
             '300': '#4E585E',
             '400': '#FEDE00',
             '500': '#D9D9D9',
