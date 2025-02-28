@@ -15,3 +15,5 @@ export {NumberInputComp} from './numberInput'
 export { ProgressComp } from './progressComp'
 
 export { SideBar} from './sideBar'
+
+export {SurveyOption} from './surveyOptions'

@@ -1,5 +1,5 @@
 import React from "react";
-import { Chip, NumberInputComp, ProgressComp, SelectInput, SideBar } from "../../components"
+import { Chip, NumberInputComp, ProgressComp, SelectInput, SideBar, SurveyOption } from "../../components"
 import { TabBar } from "../../components/switchTab";
 import { NumberInput } from "@heroui/react";
 
@@ -73,7 +73,9 @@ export const Darsa = () => {
         label="Processing..."
       /> */}
 
-      <SideBar />
+      {/* <SideBar /> */}
+
+      <SurveyOption/>
 
     </div>
   )
