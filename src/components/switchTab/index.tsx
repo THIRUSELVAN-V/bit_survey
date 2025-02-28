@@ -1,5 +1,6 @@
 import { Tab, Tabs, cn } from '@heroui/react';
 import type React from 'react';
+
 interface TabBarProps {
     id?: string;
     tabs?: {
@@ -18,18 +19,24 @@ interface TabBarProps {
     tabClassName?: string;
     tablistClassName?: string;
     tabLabelClassName?: string;
+    normalTabColor?: string; // Custom color for normal (inactive) tabs.
+    selectedTabColor?: string; // Custom color for selected (active) tabs.
+    borderColor?: string;
 }
+
 export const TabBar = ({
     id,
     tabs,
     activeTab,
     setActiveTab,
-    color = 'primary', // Default color.
     variant = 'underlined', // Default variant.
     className,
     tabClassName,
     tablistClassName,
     tabLabelClassName,
+    normalTabColor = 'text-gray-500', // Default color for normal tabs.
+    selectedTabColor = 'text-primary-500', // Default color for selected tabs.
+    borderColor = 'bg-primary-500'
 }: TabBarProps) => {
     return (
         <div
@@ -45,7 +52,7 @@ export const TabBar = ({
                         tablistClassName,
                     ),
                     panel: 'overflow-auto',
-                    cursor: 'w-full bg-primary-500',
+                    cursor: cn('w-full', borderColor),
                     tab: 'max-w-fit px-0 h-12',
                 }}
                 color="primary"
@@ -69,16 +76,17 @@ export const TabBar = ({
                                     className={cn(
                                         'text-body2 leading-6 font-source',
                                         'font-regular mb-[0.313rem]',
-                                        activeTab === item?.id ? 'font-semibold text-primary-500' : 'text-gray-500' // Apply color
+                                        activeTab === item?.id ? selectedTabColor : normalTabColor // Apply custom colors
                                     )}
                                 >
                                     {item?.label}
                                 </p>
-
                             </div>
                         }
                         className={cn('h-full pt-4', tabClassName)}
                     >
+                        {/* Render the content of the active tab */}
+                        {activeTab === item?.id && item?.content}
                     </Tab>
                 ))}
             </Tabs>
