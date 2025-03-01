@@ -68,15 +68,15 @@ export const Darsa = () => {
       />
 
       {/* <SideBar /> */}
-      <div className="w-[35vh]">
-        <SurveyOption
-          iconBgColor="bg-primary-600"
-          icon={<PlusShield />}
-          title="Create survey"
-          description="Explore new paths"
-        // onChange={handleChange} // Optional
-        />
-      </div>
+<div className="w-[35vh]">
+      <SurveyOption
+        iconBgColor="bg-primary-600"
+        icon={<PlusShield/>}
+        title="Create survey"
+        description="Explore new paths"
+        // onClick={handleClick} // Optional
+      />
+</div>
 
       <div className="w-[55vh]">
         <SurveyCard

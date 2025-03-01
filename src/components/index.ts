@@ -27,3 +27,7 @@ export { SurveyCard } from './surveyCard'
 export {NoGroupCreationCard} from './noGroupCreationCard'
 
 export {NoSurveyCard} from './noSurveyCard'
+
+export {TabBar} from './switchTab'
+
+export {PredefindTemplateCard} from './predefindTemplateCard'

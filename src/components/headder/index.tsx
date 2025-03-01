@@ -11,9 +11,9 @@ export const Header = ({
   title,
 }:HeaderProps) => {
   return (
-    <div className='border border-primary-900 flex py-5 px-10 bg-background items-center justify-between'>
-        <p className="font-semibold text-primary-800 text-[1.75rem] ">{title}</p>
-        <div className="flex gap-[1.875rem]">
+    <div className='border-b border-content1-600  flex  py-5 px-10 bg-background items-center justify-between'>
+        <p className="font-semibold text-content1-700 text-[1.75rem] ">{title}</p>
+        <div className="flex gap-[1.875rem] items-center">
           <InputField
             startContent = {<SearchIcon fill="#718EBF"/>}
             inputWrapperClassName="py-4 px-5 border-none bg-content1-50 rounded-full"
@@ -32,7 +32,7 @@ export const Header = ({
           />
           <div >
           <Avatar  src="https://i.pinimg.com/736x/c9/d2/d9/c9d2d9fc147d4d16bdc8a348515313c8.jpg"
-            
+            size="lg"
            />
            </div>
         </div>

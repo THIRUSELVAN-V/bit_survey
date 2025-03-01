@@ -63,44 +63,44 @@ export const ButtonComponent = ({
     type,
     ...rest
 }: ButtonProps) => {
-    return (
-        <Button
-            // Base styling with NextUI Button component
-            className={cn(
-                ' border border-content2-200 rounded-[0.37rem] gap-1 h-[2.5rem] w-[10rem] transition-colors',
-                bgColor
-                    ? `${bgColor} hover:!${bgColor} data-[hover=true]:!${bgColor}`
-                    : 'bg-background hover:!bg-background data-[hover=true]:!bg-background', // Allow custom background color
-                baseClassName, // Allow custom class overrides
-            )}
-            size='sm'
-            radius={radius}
-            variant={ButtonVariant}
-            onPress={handleOnClick}
-            type={type}
-            id={`${id}-button`}
-            {...rest}
-        >
-            {/* Render icon if isIcon is true */}
-            {isIcon && (
-                <div
-                    className={cn(
-                        'flex items-center justify-center',
-                        iconClassName, // Allow custom icon styling
-                    )}
-                >
-                    {buttonIcon}
-                </div>
-            )}
-            {/* Button text with customizable styling */}
-            <p
-                className={cn(
-                    'text-[0.875rem] font-source font-semibold text-content2-600',
-                    textClassName, // Allow custom text styling
-                )}
-            >
-                {buttonText}
-            </p>
-        </Button>
-    );
+	return (
+		<Button
+			// Base styling with NextUI Button component
+			className={cn(
+				' border border-content2-200 rounded-[0.37rem] gap-1 h-[2.5rem] w-[10rem] transition-colors',
+				bgColor
+					? `${bgColor} hover:!${bgColor} data-[hover=true]:!${bgColor}`
+					: 'bg-background hover:!bg-background data-[hover=true]:!bg-background', // Allow custom background color
+				baseClassName, // Allow custom class overrides
+			)}
+			size='sm'
+			radius={radius}
+			variant={ButtonVariant}
+			onPress={handleOnClick}
+			type={type}
+			id={`${id}-button`}
+			{...rest}
+		>
+			{/* Render icon if isIcon is true */}
+			{isIcon && (
+				<div
+					className={cn(
+						'flex items-center justify-center',
+						iconClassName, // Allow custom icon styling
+					)}
+				>
+					{buttonIcon}
+				</div>
+			)}
+			{/* Button text with customizable styling */}
+			<p
+				className={cn(
+					'text-[0.875rem] font-source font-semibold ',
+					textClassName, // Allow custom text styling
+				)}
+			>
+				{buttonText}
+			</p>
+		</Button>
+	);
 };

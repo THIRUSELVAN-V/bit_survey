@@ -4,7 +4,7 @@ import { ButtonComponent } from "../button";
 import { FiPlus } from "react-icons/fi";
 export const NoSurveyCard = () => {
   return (
-    <div className=" flex items-center flex-col">
+    <div className=" flex items-center justify-center h-full flex-col">
       <div className="p-10 bg-content2-300 w-fit rounded-full mb-10">
         <BagIcon/>
       </div>
