@@ -1,7 +1,15 @@
 export {SyncIcon} from "./syncIcon"
+
 export {Question} from "./questionIcon"
+
 export {SearchIcon} from "./searchIcon"
+
 export {SettingIcon} from "./settingIcon"
-export {BagIcon} from "./bagIcon"
-export {PlusShield} from "./plusShield"
+
 export {ShieldIcon} from "./shieldIcon"
+
+export {Logo} from "./logo"
+
+export {PlusShield} from "./plusShield"
+
+export {BagIcon} from "./bagIcon"

@@ -1,55 +1,40 @@
-'use client';
-
-
 import { Button, cn } from '@heroui/react';
 import type React from 'react';
 import { SyncIcon } from '../../assets';
-
 /**
  * Props interface for the ButtonComponent
  * @interface ButtonProps
  */
 export type ButtonProps = {
-	/** Optional ID for the component */
-	id?: string;
-
-	/** Handler function for button click events */
-	handleOnClick?: () => void;
-
-	/** Text to display on the button */
-	buttonText?: string;
-
-	/** React node to be used as button icon */
-	buttonIcon?: React.ReactNode;
-
-	/** Custom className for styling the icon */
-	iconClassName?: string;
-
-	/** Custom className for styling the text */
-	textClassName?: string;
-
-	/** Custom className for styling the button */
-	baseClassName?: string;
-
-	/** Flag to determine if the button should display an icon */
-	isIcon?: boolean;
-
-	/** Custom background color for button */
-	bgColor?: string;
-
-	radius?: 'sm' | 'md' | 'lg' | 'full';
-
-	ButtonVariant?:
-	| 'solid'
-	| 'bordered'
-	| 'light'
-	| 'flat'
-	| 'faded'
-	| 'shadow'
-	| 'ghost';
-	type?: 'button' | 'submit' | 'reset';
+    /** Optional ID for the component */
+    id?: string;
+    /** Handler function for button click events */
+    handleOnClick?: () => void;
+    /** Text to display on the button */
+    buttonText?: string;
+    /** React node to be used as button icon */
+    buttonIcon?: React.ReactNode;
+    /** Custom className for styling the icon */
+    iconClassName?: string;
+    /** Custom className for styling the text */
+    textClassName?: string;
+    /** Custom className for styling the button */
+    baseClassName?: string;
+    /** Flag to determine if the button should display an icon */
+    isIcon?: boolean;
+    /** Custom background color for button */
+    bgColor?: string;
+    radius?: 'sm' | 'md' | 'lg' | 'full';
+    ButtonVariant?:
+    | 'solid'
+    | 'bordered'
+    | 'light'
+    | 'flat'
+    | 'faded'
+    | 'shadow'
+    | 'ghost';
+    type?: 'button' | 'submit' | 'reset';
 };
-
 /**
  * A reusable button component that supports icons and custom styling
  *
@@ -64,19 +49,19 @@ export type ButtonProps = {
  * ```
  */
 export const ButtonComponent = ({
-	id,
-	handleOnClick = () => false,
-	buttonText = 'Sync from HRMS',
-	buttonIcon = <SyncIcon />,
-	iconClassName = '',
-	radius,
-	textClassName = '',
-	isIcon = true,
-	baseClassName = '',
-	bgColor,
-	ButtonVariant = 'light',
-	type,
-	...rest
+    id,
+    handleOnClick = () => false,
+    buttonText = 'Sync from HRMS',
+    buttonIcon = <SyncIcon />,
+    iconClassName = '',
+    radius,
+    textClassName = '',
+    isIcon = true,
+    baseClassName = '',
+    bgColor,
+    ButtonVariant = 'light',
+    type,
+    ...rest
 }: ButtonProps) => {
 	return (
 		<Button
