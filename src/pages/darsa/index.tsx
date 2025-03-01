@@ -1,7 +1,6 @@
 import React from "react";
 import { Chip, NumberInputComp, ProgressComp, SelectInput, SideBar, SurveyCard, SurveyOption } from "../../components"
 import { TabBar } from "../../components/switchTab";
-import { NumberInput } from "@heroui/react";
 import { PlusShield } from "../../assets/plusShield";
 
 
@@ -41,51 +40,75 @@ export const Darsa = () => {
 
   return (
     <div>
-       <Chip
-        label="Completed"
-        borderColor="border-[#1FC16B]"
+      <Chip
+        label="Primary Chip"
+        chipVariant="primary"
+        radius="md" // Custom border radius
+        startContent={<span>🚀</span>} // Custom start content
+        endContent={<span>🔥</span>} // Custom end content
+        textClassName="text-blue-800" // Custom text color
       />
-       <TabBar
-                tabs={tabs}
-                activeTab={activeTab}
-                setActiveTab={setActiveTab}
-                normalTabColor="text-gray-700" // Custom color for normal tabs
-                selectedTabColor="primary-500" // Custom color for selected tabs
-                borderColor="primary-500"
-            />
+      <TabBar
+        tabs={tabs}
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+        normalTabColor="text-gray-700" // Custom color for normal tabs
+        selectedTabColor="primary-500" // Custom color for selected tabs
+        borderColor="primary-500"
+      />
 
-<SelectInput
+      <SelectInput
         options={questionType}
         placeholder="Select Question Type"
         className="max-w-xs rounded-none"
       />
 
-<NumberInputComp
+      <NumberInputComp
         label="Enter Points"
         placeholder="Enter Points"
         isLabelVisible={false}
       />
 
-<ProgressComp
+      <ProgressComp
         value={70}
-        size="lg"
-        color="bg-purple-500"
-        outlineColor="border-purple-300"
         label="Processing..."
-      /> 
+      />
 
       {/* <SideBar /> */}
-<div className="w-[35vh]">
-      <SurveyOption
-        iconBgColor="bg-primary-600"
-        icon={<PlusShield/>}
-        title="Create survey"
-        description="Explore new paths"
+      <div className="w-[35vh]">
+        <SurveyOption
+          iconBgColor="bg-primary-600"
+          icon={<PlusShield />}
+          title="Create survey"
+          description="Explore new paths"
         // onChange={handleChange} // Optional
-      />
-</div>
+        />
+      </div>
 
-<SurveyCard/>
+      <div className="w-[55vh]">
+        <SurveyCard
+          // chip
+          chipLabel="Completed"
+          chipVariant="primary"
+          chipBaseClassName="bg-warning-200 rounded-md "
+          chipTextClassName="text-warning-100 py-2 font-medium text-sm"
+          // Header
+          subtitle="Survey Subtitle"
+          description="This is a description of the survey."
+          //progress
+          progressValue={100}
+          progressLabel="Progress"
+
+          //avatar
+          avatarUrls={['url1', 'url2', 'url3']}
+          responseCount={99}
+          //button
+          buttonText="View"
+          //card
+          bgColor="#F5F8FE"
+          textColor="text-gray-800"
+        />
+      </div>
     </div>
   )
 }

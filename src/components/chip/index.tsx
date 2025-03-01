@@ -2,11 +2,16 @@ import {
     Chip as NextChip,
     type ChipProps as NextChipProps,
 } from '@heroui/react';
-
-
 // components/Chip.tsx
 import type React from 'react';
-
+// Maps to define background colors for different chip variants
+const bgColorSourceMap = {
+    primary: 'bg-content1-foreground', // Background color for primary variant
+    neutral: 'bg-secondary-foreground', // Background color for neutral variant
+    danger: 'bg-danger-foreground', // Background color for danger variant
+    success: 'bg-success-foreground', // Background color for success variant
+    warning: 'bg-primary-50', // Background color for warning variant
+};
 // Maps to define text colors for different chip variants
 const LabelColorSourceMap = {
     primary: 'text-content1-200', // Text color for primary variant
@@ -45,14 +50,13 @@ export interface ChipProps extends Omit<NextChipProps, 'color'> {
     | 'faded'
     | 'shadow'
     | 'dot'; // Variant styling of the chip
-    borderColor?: string;
 }
 export const Chip = ({
     label,
     avatar,
-    size = 'md',
+    size = 'sm',
     radius = 'full',
-    variant = 'bordered',
+    variant = 'flat',
     isDisabled = false,
     isCloseable = false,
     chipClass,
@@ -61,23 +65,17 @@ export const Chip = ({
     chipVariant,
     textClassName,
     baseClassName,
-    borderColor,
     ...rest
 }: ChipProps) => {
-    //set the background color class to tra
-    const backgroundColorClass = 'bg-transparent';
-   
+    // Determine the background color class based on the chip variant
+    const backgroundColorClass = isDisabled
+        ? 'bg-content2-100' // Disabled state background
+        : bgColorSourceMap[chipVariant as keyof typeof bgColorSourceMap] || '';
     // Determine the label color class based on the chip variant
     const labelColorClass = isDisabled
         ? 'text-content2-300' // Disabled state text color
         : LabelColorSourceMap[chipVariant as keyof typeof LabelColorSourceMap] ||
         '';
-
-        // Define border color based on chip variant
-        const borderColorClass = isDisabled
-        ? 'border-content2-200' // Disabled state border color
-        : `border ${borderColor || 'border-primary'}`;
-    
     // Determine the hover effect class based on the chip variant
     const hoverClass = !isDisabled
         ? hoverClasses[chipVariant as keyof typeof hoverClasses]
@@ -87,7 +85,7 @@ export const Chip = ({
             size={size} // Size of the chip
             avatar={avatar} // Avatar element
             radius={radius} // Border radius
-            variant="bordered" // Variant typeF
+            variant={variant} // Variant type
             isDisabled={isDisabled} // Disabled state
             endContent={endContent} // End content element
             isCloseable={isCloseable} // Closeable state
@@ -95,18 +93,19 @@ export const Chip = ({
             className={`cursor-pointer ${hoverClass || ''} ${chipClass}`} // Adding hover effect and pointer cursor
             classNames={{
                 base: [
-                    'font-source gap-[6px] px-5 py-1',
-                    backgroundColorClass, // Transparent background
-                    borderColorClass, // Dynamic border color
+                    'font-source gap-[6px] px-2 ',
+                    backgroundColorClass,
                     baseClassName,
-                ].join(' '),
+                ].join(' '), // Base class for background color
                 content: [
-                    labelColorClass, // Text color
-                    'font-source font-medium text-body3 px-0',
+                    labelColorClass,
+                    'font-source',
+                    'font-medium',
+                    'text-body3 px-0',
                     textClassName,
-                ].join(' '),
+                ], // Class for label text color
             }}
-            {...rest}
+            {...rest} // Spread remaining props
         >
             {label} {/* Render the label inside the chip */}
         </NextChip>
