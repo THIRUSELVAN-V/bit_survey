@@ -20,6 +20,10 @@ export {SurveyOption} from './surveyOptions'
 
 export {Header} from './headder'
 
+export {IconButtonWithText} from './iconButtonWithText'
+
 export { SurveyCard } from './surveyCard'
 
+export {NoGroupCreationCard} from './noGroupCreationCard'
 
+export {NoSurveyCard} from './noSurveyCard'
