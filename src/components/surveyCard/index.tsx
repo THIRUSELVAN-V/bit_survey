@@ -23,9 +23,9 @@ interface SurveyCardProps {
   buttonVariant?: 'solid' | 'bordered' | 'light' | 'flat' | 'faded' | 'shadow' | 'ghost';
   chipBgColor?: string; // Custom background color for Chip
   chipBorderRadius?: string; // Custom border radius for Chip
-  chipTextClassName:string;
-  chipBaseClassName:string;
-  progressClassName:string
+  chipTextClassName: string;
+  chipBaseClassName: string;
+  progressClassName: string
 }
 
 export const SurveyCard: React.FC<SurveyCardProps> = ({
@@ -57,7 +57,7 @@ export const SurveyCard: React.FC<SurveyCardProps> = ({
             label={chipLabel}
             chipVariant={chipVariant}
             textClassName={chipTextClassName}
-            baseClassName={cn(`px-2 py-1  ${chipLabel==="Completed"?"borderColor":"success-100"}`,chipBaseClassName)} // Custom border radiuschipBaseClassName}
+            baseClassName={cn(`px-2 py-1  ${chipLabel === "Completed" ? "borderColor" : "success-100"}`, chipBaseClassName)} // Custom border radiuschipBaseClassName}
 
           // Custom border radius
           />
@@ -76,13 +76,13 @@ export const SurveyCard: React.FC<SurveyCardProps> = ({
 
       {/* Progress Bar */}
       <div className="mt-4">
-      <ProgressComp
-  value={progressValue}
-  label={progressLabel}
-  outlineColor={progressValue === 100 ? "border-gray-400" : "border-primary-200"}
-  color={progressValue === 100 ? "bg-gray-400" : "bg-primary-200"}
-  baseClassName={cn(`rounded-full ${progressValue === 100 ? 'border-gray-400' : 'border-primary-200'}`)}
-/>
+        <ProgressComp
+          value={progressValue}
+          label={progressLabel}
+          outlineColor={progressValue === 100 ? "border-gray-400" : "border-primary-200"}
+          color={progressValue === 100 ? "bg-gray-400" : "bg-primary-200"}
+          baseClassName={cn(`rounded-full ${progressValue === 100 ? 'border-gray-400' : 'border-primary-200'}`)}
+        />
       </div>
 
       {/* Avatar Group and Button */}
@@ -107,7 +107,7 @@ export const SurveyCard: React.FC<SurveyCardProps> = ({
           bgColor="bg-green-500"
           ButtonVariant="solid"
           textClassName='text-lg text-white'
-          baseClassName={cn(`rounded-md px-4 ${buttonText==="Start" || buttonText==="View"?"bg-success-100":"bg-warning"}`,)} // Additional custom styles
+          baseClassName={cn(`rounded-md px-4 ${buttonText === "Start" || buttonText === "View" ? "bg-success-100" : "bg-warning"}`,)} // Additional custom styles
         />
       </div>
     </div>
