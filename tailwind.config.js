@@ -93,7 +93,7 @@ module.exports = {
             '600': '#E7EDFF',
             '700': '#718EBF', //used
             '800': '#D3CBFB', //used
-            '900': '#3B0C7E',
+            '900': '#3B0C7E', //used
           },
           secondary: {
             DEFAULT: '#AAB9C5',
@@ -164,7 +164,10 @@ module.exports = {
             '300': '#CFEAFF', //used
             '400': '#5925DC', //used
             '500': '#1A79E6', //used
-            
+            '600': '#E6EFF5', //used
+            '700': '#343C6A', //used
+            '800': '#DCFAF8', //used
+            '900': '#1B1AFF', //used
           } ,
           content2: {
             DEFAULT: '#8F90A6',
@@ -174,6 +177,9 @@ module.exports = {
             '200': '#535862', //used
             '300': '#F4F5FA', //used
             '400': '#333333', //used
+            '500': '#232323', //used
+            '600': '#F5F8FE', //used
+            '700': '#1C1C1C', //used
             
           }
         },

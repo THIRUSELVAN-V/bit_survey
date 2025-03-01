@@ -11,7 +11,7 @@ interface TabBarProps {
     }[]; // Array of tab objects with icon, label, and content.
     activeTab: string; // Currently active tab ID.
     setActiveTab: (tabId: string) => void; // Function to change active tab.
-    color?: 'primary' | 'secondary'; // Optional color for tab.
+    color?: 'primary' | 'secondary' | "danger" | "success" | "warning" | undefined; // Optional color for tab.
     variant?: 'solid' | 'underlined' | 'bordered' | 'light'; // Optional variant for tab style.
     isMark?: boolean;
     isMarkfunction?: () => void;
@@ -29,13 +29,14 @@ export const TabBar = ({
     tabs,
     activeTab,
     setActiveTab,
+    color="primary",
     variant = 'underlined', // Default variant.
     className,
     tabClassName,
     tablistClassName,
     tabLabelClassName,
-    normalTabColor = 'text-gray-500', // Default color for normal tabs.
-    selectedTabColor = 'text-primary-500', // Default color for selected tabs.
+    normalTabColor ="text-content1-200", // Default color for normal tabs (ex:'text-gray-500')
+    selectedTabColor, // Default color for selected tabs (ex:'text-primary-500')
     borderColor = 'bg-primary-500'
 }: TabBarProps) => {
     return (
@@ -55,7 +56,7 @@ export const TabBar = ({
                     cursor: cn('w-full', borderColor),
                     tab: 'max-w-fit px-0 h-12',
                 }}
-                color="primary"
+                color={color}
                 variant={variant}
                 selectedKey={activeTab}
                 onSelectionChange={(key) => setActiveTab(key as string)}
@@ -74,8 +75,8 @@ export const TabBar = ({
                                 {item?.icon}
                                 <p
                                     className={cn(
-                                        'text-body2 leading-6 font-source',
-                                        'font-semibold',
+                                        'text-body2 leading-6 ',
+                                        'font-medium ',
                                         activeTab === item?.id ? selectedTabColor : normalTabColor // Apply custom colors
                                     )}
                                 >

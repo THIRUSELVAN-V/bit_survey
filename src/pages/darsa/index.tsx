@@ -81,7 +81,7 @@ export const Darsa = () => {
         icon={<PlusShield/>}
         title="Create survey"
         description="Explore new paths"
-        // onChange={handleChange} // Optional
+        // onClick={handleClick} // Optional
       />
 </div>
 

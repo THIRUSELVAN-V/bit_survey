@@ -110,7 +110,7 @@ export const ButtonComponent = ({
 			{/* Button text with customizable styling */}
 			<p
 				className={cn(
-					'text-[0.875rem] font-source font-semibold text-content2-600',
+					'text-[0.875rem] font-source font-semibold ',
 					textClassName, // Allow custom text styling
 				)}
 			>

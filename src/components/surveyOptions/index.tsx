@@ -1,12 +1,12 @@
 import { cn } from "@heroui/react";
-import React, { ReactNode } from "react";
+import React from "react";
 
 interface SurveyOptionProps {
   iconBgColor: string;
   icon: React.ReactNode;
   title: string;
   description: string;
-  onChange?: () => void; // Optional onChange prop
+  onClick?: () => void; // Optional onChange prop
 }
 
 export const SurveyOption = ({
@@ -14,24 +14,25 @@ export const SurveyOption = ({
   icon,
   title,
   description,
-  onChange,
+  onClick = () => false,
 }: SurveyOptionProps) => {
   return (
-    <div className="w-full border-primary-800 border-2 rounded-md flex flex-row gap-4 p-3">
+    <div onClick={onClick} className=" border-primary-800 border rounded-[10px] flex items-center gap-4 py-2 px-5">
       {/* Icon Container */}
       <div
-        
-        className={cn("w-14 h-14 rounded-full flex items-center justify-center",iconBgColor)}
+        className={cn(
+          "p-[1.25rem] rounded-full flex items-center justify-center",
+          iconBgColor
+        )}
       >
         {icon}
       </div>
       {/* Text Content */}
-      <div>
-        <h3 className="font-semibold">{title}</h3>
-        <div className="text-primary-700 font-semibold">
-          <p>{description}
-          </p>
-          </div>
+      <div className="flex flex-col gap-1">
+        <h3 className="font-regular text-[16px] text-content2-500">{title}</h3>
+        <div className="text-primary-700 font-regular text-[16px]">
+          <p>{description}</p>
+        </div>
       </div>
     </div>
   );

@@ -1,17 +1,16 @@
 import React from "react";
 import {
   ButtonComponent,
-  Header,
   IconButtonComponent,
   IconButtonWithText,
   Modals,
   NoGroupCreationCard,
-  NoSurveyCard,
+  PredefindTemplateCard,
 } from "../../components";
 import { InputField } from "../../components/inputField";
 import { MdOutlineWorkOutline } from "react-icons/md";
 import { BsPerson } from "react-icons/bs";
-import { BagIcon } from "../../assets";
+import { MdOutlineSchool } from "react-icons/md";
 export const Thiru = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
@@ -22,7 +21,7 @@ export const Thiru = () => {
   };
   return (
     <div className=" ">
-      <Header title="Dashboard" />
+      
       <div className="">
         <ButtonComponent />
         <IconButtonComponent handleOnClick={handleOpen} />
@@ -57,8 +56,22 @@ export const Thiru = () => {
       <div className="">
         <NoGroupCreationCard />
       </div>
-      <div className="p-8">
-        <NoSurveyCard />
+      <div className="p-3 bg-white flex gap-10">
+        <PredefindTemplateCard
+          icon={<MdOutlineSchool size={24} className="text-content1-900"/>}
+          title="Assets"
+          description="This template allows users to create structured product-related survey questions efficiently. It includes predefined question formats"
+        />
+        <PredefindTemplateCard
+          icon={<MdOutlineSchool size={24} className="text-content1-900"/>}
+          title="Assets"
+          description="This template allows users to create structured product-related survey questions efficiently. It includes predefined question formats"
+        />
+        <PredefindTemplateCard
+          icon={<MdOutlineSchool size={24} className="text-content1-900"/>}
+          title="Assets"
+          description="This template allows users to create structured product-related survey questions efficiently. It includes predefined question formats"
+        />
       </div>
     </div>
   );
