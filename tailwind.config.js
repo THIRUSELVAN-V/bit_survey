@@ -100,7 +100,7 @@ module.exports = {
             foreground: '#E0E1E2',
             '50': '#f4f4f4',
             '100': '#f4f4f4',
-            '200': '#cdcdcd',
+            '200': '#F5F8FE', //used
             '300': '#a7a7a7',
             '400': '#808080',
             '500': '#5a5a5a',
@@ -109,7 +109,7 @@ module.exports = {
             DEFAULT: '#51BC51',
             foreground: '#E3FBE3',
             '50': '#D5F0D5',
-            '100': '#51BC51',
+            '100': '#1FC16B',
             '200': '#1F7A1F',
             '300': '#C3E8C3',
             '400': '#2A702A',
@@ -121,8 +121,8 @@ module.exports = {
           warning: {
             DEFAULT: '#EA9A3E',
             foreground: '#FFEFE5',
-            '100': '#F0DFD5',
-            '200': '#EA9A3E',
+            '100': '#E26001', //used
+            '200': '#FEF3F2', //used
             '300': '#9A5B13',
             '400': '#FFF5E3',
             '500': '#E8D1C3',
