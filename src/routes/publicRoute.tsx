@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom"
-import { Darsa, Dashboard, Templates, Thiru } from "../pages"
+import { Darsa, Dashboard, GroupCreation, Templates, Thiru } from "../pages"
 
 export const PublicRoute = () => {
   return (
@@ -8,6 +8,7 @@ export const PublicRoute = () => {
         <Route path="/thiru" element={<Thiru/>}/>
         <Route path="/darsa" element={<Darsa/>}/>
         <Route path="/templates" element={<Templates/>}/>
+        <Route path="/groupCreation" element={<GroupCreation/>}/>
     </Routes>
   )
 }

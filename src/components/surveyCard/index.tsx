@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { ProgressComp } from '../progressComp'; // Adjust the import path as needed
 import { Chip } from '../chip'; // Adjust the import path as needed
 import { ButtonComponent } from '../button'; // Adjust the import path as needed

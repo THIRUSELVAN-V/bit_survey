@@ -5,3 +5,5 @@ export {Darsa} from "./darsa"
 export {Dashboard} from "./dashboard"
 
 export {Templates} from "./templates"
+
+export {GroupCreation} from "./groupCreation"
