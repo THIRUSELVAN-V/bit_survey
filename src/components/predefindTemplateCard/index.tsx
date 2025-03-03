@@ -12,7 +12,7 @@ export const PredefindTemplateCard = ({
   description,
 }:PredefindTemplateCardProps) => {
   return (
-    <div className='bg-content2-600 p-7 rounded-[20px]'>
+    <div className='bg-content2-600 p-7 rounded-[20px] h-full flex flex-col justify-between'>
       <div>
       {icon}
       <p className="font-bold text-xl text-content2-700 pt-4 pb-5">{title}</p>

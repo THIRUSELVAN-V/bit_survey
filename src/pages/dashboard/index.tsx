@@ -1,7 +1,12 @@
 import React from "react";
-import { NoSurveyCard, SurveyOption, TabBar } from "../../components";
+import {
+  NoSurveyCard,
+  SurveyCard,
+  SurveyOption,
+  TabBar,
+} from "../../components";
 import { PlusShield, ShieldIcon } from "../../assets";
-
+import {surveyCardsData} from "./utils"
 export const Dashboard = () => {
   const [isSurvey, setIsSurvey] = React.useState(true);
   const surveyOptionDatd = [
@@ -28,42 +33,42 @@ export const Dashboard = () => {
     },
   ];
 
-  const [activeTab, setActiveTab] = React.useState('tab1');
+  const [activeTab, setActiveTab] = React.useState("tab1");
 
+  const renderSurveyCards = (filterStatus:string[] |null) => {
+    const filteredData = filterStatus
+      ? surveyCardsData.filter((card) => filterStatus.includes(card.surveyStatus))
+      : surveyCardsData;
+  
+    return (
+      <div className="grid grid-cols-3 pt-5 gap-14">
+        {filteredData.map((card) => (
+          <SurveyCard
+            key={card.id} // Add key for better React performance
+            date={card.date}
+            surveyName={card.surveyName}
+            createdBy={card.createdBy}
+            surveyStatus={card.surveyStatus as any}
+            totalResponse={card.totalResponse}
+            totalMembers={card.totalMembers}
+          />
+        ))}
+      </div>
+    );
+  };
+  
   const tabs = [
-    {
-      id: 'tab1',
-      label: 'Live',
-      content: <div>This is the content for Tab 1.</div>,
-    },
-    {
-      id: 'tab2',
-      label: 'Scheduled',
-      content: <div>This is the content for Tab 2.</div>,
-    },
-    {
-      id: 'tab3',
-      label: 'Draft',
-      content: <div>This is the content for Tab 3.</div>,
-    },
-    {
-      id: 'tab4',
-      label: 'All surveys ',
-      content: <div>This is the content for Tab 4.</div>,
-    },
-    {
-      id: 'tab5',
-      label: 'Completed',
-      content: <div>This is the content for Tab 4.</div>,
-    },
-    {
-      id: 'tab6',
-      label: 'Group surveys',
-      content: <div>This is the content for Tab 4.</div>,
-    },
+    { id: "tab1", label: "Live", content: renderSurveyCards(["Live","Created"]) },
+    { id: "tab2", label: "Scheduled", content: renderSurveyCards(["Scheduled"]) },
+    { id: "tab3", label: "Draft", content: renderSurveyCards(["Draft"]) },
+    { id: "tab4", label: "All surveys", content: renderSurveyCards(null) }, 
+    { id: "tab5", label: "Completed", content: renderSurveyCards(["Completed"]) },
+    { id: "tab6", label: "Group surveys", content: renderSurveyCards(["Group surveys"]) },
   ];
-  return (
-    <div className="bg-background h-full rounded-3xl px-4 py-8">
+  
+  
+   return (
+    <div className="bg-background min-h-full rounded-3xl px-4 py-8">
       {!isSurvey && <NoSurveyCard />}
       <div>
         {isSurvey && (
@@ -72,7 +77,6 @@ export const Dashboard = () => {
               {surveyOptionDatd.map((item) => (
                 <div className="col-span-3" key={item.id}>
                   <SurveyOption
-                    
                     iconBgColor={item.iconBgColor}
                     icon={item.icon}
                     title={item.title}
@@ -81,12 +85,15 @@ export const Dashboard = () => {
                 </div>
               ))}
             </div>
-            <TabBar
+            <div className="">
+              <TabBar
                 tabs={tabs}
                 activeTab={activeTab}
                 setActiveTab={setActiveTab} // Custom color for selected tabs
                 color="primary"
-            />
+                tablistClassName="gap-7 border-content1-1003"
+              />
+            </div>
           </div>
         )}
       </div>
