@@ -1,11 +1,13 @@
 import React from "react";
 import {
   ButtonComponent,
+  Chip,
   IconButtonComponent,
   IconButtonWithText,
   Modals,
   NoGroupCreationCard,
   PredefindTemplateCard,
+  SurveyCard,
 } from "../../components";
 import { InputField } from "../../components/inputField";
 import { MdOutlineWorkOutline } from "react-icons/md";
@@ -44,7 +46,7 @@ export const Thiru = () => {
             icon={<BsPerson size={27} className="text-warning-200" />}
             text="Skills"
             color="text-warning-200"
-            baseClass="border-warning-100"
+            
           />
           <IconButtonWithText
             icon={<BsPerson size={27} className="text-content1-500" />}
@@ -73,6 +75,105 @@ export const Thiru = () => {
           description="This template allows users to create structured product-related survey questions efficiently. It includes predefined question formats"
         />
       </div>
+      <div className="bg-background p-7 grid grid-cols-3 gap-14">
+        <SurveyCard
+          date="Nov 26, 2022"
+          surveyName="Product thinking Activity"
+          createdBy="Personalized Skill team"
+          surveyStatus="Created"
+          totalResponse={0}
+          totalMembers={250}
+
+        />
+        <SurveyCard
+          date="Nov 26, 2022"
+          surveyName="Product thinking Activity"
+          createdBy="Personalized Skill team"
+          surveyStatus="Live"
+          totalResponse={148}
+          totalMembers={250}
+
+        />
+        <SurveyCard
+          date="Nov 26, 2022"
+          surveyName="Product thinking Activity"
+          createdBy="Personalized Skill team"
+          surveyStatus="Draft"
+          totalResponse={148}
+          totalMembers={250}
+
+        />
+        <SurveyCard
+          date="Nov 26, 2022"
+          surveyName="Product thinking Activity"
+          createdBy="Personalized Skill team"
+          surveyStatus="Completed"
+          totalResponse={250}
+          totalMembers={250}
+
+        />
+        <SurveyCard
+          date="Nov 26, 2022"
+          surveyName="Product thinking Activity"
+          createdBy="Personalized Skill team"
+          surveyStatus="Scheduled"
+          totalResponse={0}
+          totalMembers={250}
+
+        />
+        <SurveyCard
+          date="6"
+          surveyName="Product thinking Activity"
+          createdBy="Personalized Skill team"
+          surveyStatus="Group surveys"
+          totalResponse={250}
+          totalMembers={250}
+
+        />
+        <SurveyCard      
+          date="6"
+          surveyName="Product thinking Activity"
+          createdBy="Personalized Skill team"
+          surveyStatus="IncommingSurveyNotStarted"
+          totalResponse={50}
+          totalMembers={250}
+
+        />
+        <SurveyCard   
+          date="6"
+          surveyName="Product thinking Activity"
+          createdBy="Personalized Skill team"
+          surveyStatus="IncommingSurveyStarted"
+          totalResponse={50}
+          totalMembers={250}
+
+        />
+        <SurveyCard
+          date="6"
+          surveyName="Product thinking Activity"
+          createdBy="Personalized Skill team"
+          surveyStatus="IncommingSurveyCompleted"
+          totalResponse={250}
+          totalMembers={250}
+        />
+      </div>
+        <div className="p-6 flex gap-4 ">
+          <Chip
+            label="Finish : 6 Days  ago"
+            chipClass="px-3 py-4 rounded-[12px] bg-success-700"
+            textClassName="text-success-400 font-medium text-[14px]"
+          />
+          <Chip
+            label="Live: 6 Days Left"
+            chipClass="px-3 py-4 rounded-[12px] bg-warning-400"
+            textClassName="text-warning-500 font-medium text-[14px]"
+          />
+          <Chip
+            label="Completed"
+            chipClass="px-3 py-4 rounded-[12px] bg-transparent border border-success-600"
+            textClassName="text-secondary-500 font-medium text-[14px]"
+          />
+        </div>
     </div>
   );
 };

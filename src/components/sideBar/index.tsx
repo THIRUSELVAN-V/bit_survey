@@ -1,4 +1,4 @@
-import { useState, ReactNode } from "react";
+
 import { useNavigate } from "react-router-dom";
 
 import { MdOutlineDashboard } from "react-icons/md";
@@ -6,16 +6,18 @@ import { LuFileSearch2 } from "react-icons/lu";
 import { IoPeopleOutline } from "react-icons/io5";
 import { TbLogout2 } from "react-icons/tb";
 import { Logo } from "../../assets/logo";
+import React from "react";
+
 
 interface MenuItem {
   id: number;
   name: string;
   path: string;
-  icon: ReactNode; // Use ReactNode instead of JSX.Element
+  icon: React.ReactNode; // Use ReactNode instead of JSX.Element
 }
 
 export const SideBar = () => {
-  const [activeItem, setActiveItem] = useState<number>(1);
+  const [activeItem, setActiveItem] = React.useState<number>(1);
   const navigate = useNavigate();
 
 
@@ -23,9 +25,13 @@ export const SideBar = () => {
 
   const menuItems: MenuItem[] = [
     { id: 1, name: "Dashboard", icon: <MdOutlineDashboard size={20}/>,path:"/" },
-    { id: 2, name: "My Surveys", icon: <LuFileSearch2 size={20} />,path:"/thiru" },
-    { id: 3, name: "Mentoring", icon: <IoPeopleOutline size={20} />,path:"/darsa" },
+    { id: 2, name: "My Surveys", icon: <LuFileSearch2 size={20} />,path:"/mySurveys" },
+    { id: 3, name: "Mentoring", icon: <IoPeopleOutline size={20} />,path:"/mentoring" },
     { id: 4, name: "Templates", icon: <IoPeopleOutline size={20} />,path:"/templates" },
+    { id: 5, name: "Thiru", icon: <IoPeopleOutline size={20} />,path:"/thiru" },
+    { id: 6, name: "Darsa", icon: <IoPeopleOutline size={20} />,path:"/darsa" },
+    {id: 7, name: "GroupCreation", icon: <LuFileSearch2 size={20} />,path:"/groupCreation"},
+    
   ];
 
   

@@ -418,19 +418,19 @@ export function TableSurvey() {
                         avatarProps={{ radius: "full", src: user.avatar }}
                         description={user.email}
                         name={cellValue}
-                        className="text-secondary-600 font-semibold"
+                        className="text-secondary-800 font-semibold"
                         classNames={{name: "text-black",
                             description:"text-sm"
                         }}
                     >
-                        {/* <p className="text-secondary-600 font-semibold text-lg">{user.email}</p>  */}
+                        {/* <p className="text-secondary-800 font-semibold text-lg">{user.email}</p>  */}
                     </User>
                 );
             case "role":
                 return (
                     <div className="flex flex-col ">
                      
-                        <p className="text-bold text-tiny capitalize text-secondary-600 font-semibold">{user.team}</p>
+                        <p className="text-bold text-tiny capitalize text-secondary-800 font-semibold">{user.team}</p>
                     </div>
                 );
             case "status":
@@ -441,7 +441,7 @@ export function TableSurvey() {
                 );
             case "email":
                 return (
-                    <div className="relative flex items-center gap-2 text-secondary-600 font-semibold">
+                    <div className="relative flex items-center gap-2 text-secondary-800 font-semibold">
                         {user.email}
                     </div>
                 );
@@ -521,7 +521,7 @@ export function TableSurvey() {
              
               
                 <div className="flex w-full justify-between items-end gap-2">
-                    <ButtonComponent handleOnClick={onPreviousPage} baseClassName="border-secondary-700 gap-2 h-max p-2       w-max" buttonText="Previous" buttonIcon={<FaArrowLeft size={15}  className="text-secondary-600"/> }  textClassName="text-red-900 text-secondary-600"/>
+                    <ButtonComponent handleOnClick={onPreviousPage} baseClassName="border-secondary-700 gap-2 h-max p-2       w-max" buttonText="Previous" buttonIcon={<FaArrowLeft size={15}  className="text-secondary-800"/> }  textClassName="text-red-900 text-secondary-800"/>
                     <Pagination  page={page}
                         total={pages}
                         onChange={setPage} />
@@ -542,10 +542,10 @@ export function TableSurvey() {
                         <p
                             className={cn(
                                 'text-[0.875rem] flex gap-2 font-source font-semibold ',
-                                "text-secondary-600", // Allow custom text styling
+                                "text-secondary-800", // Allow custom text styling
                             )}
                         >
-                            Next <div className="rotate-2"><FaArrowRight  size={15} className="text-secondary-600" /></div>
+                            Next <div className="rotate-2"><FaArrowRight  size={15} className="text-secondary-800" /></div>
                         </p>
                     </Button>
                   

@@ -1,7 +1,11 @@
 import { Avatar } from "@heroui/react";
 import { ButtonComponent } from "../button";
-
-export const NoGroupCreationCard = () => {
+interface NoGroupCreationCardProps{
+  onButtonClick?: () => void;
+}
+export const NoGroupCreationCard = ({
+  onButtonClick = () => false,
+}:NoGroupCreationCardProps) => {
   return (
     <div className="flex flex-col w-fit items-center justify-center ">
       <div className="flex gap-6 relative mb-5">
@@ -33,6 +37,7 @@ export const NoGroupCreationCard = () => {
         bgColor="bg-primary"
         textClassName="text-background font-semibold text-[1rem]"
         baseClassName="border-none w-full"
+        handleOnClick={onButtonClick}
       />
     </div>
   );
