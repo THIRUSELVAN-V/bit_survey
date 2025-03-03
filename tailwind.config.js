@@ -88,7 +88,7 @@ module.exports = {
             '100': '#E9D5FF',
             '200': '#D8B4FE',
             '300': '#C084FC',
-            '400': '#A855F7',
+            '400': '#F4F3FF',
             '500': '#7F56D9', // This should match your desired color
             '600': '#E7EDFF',
             '700': '#718EBF', //used
@@ -101,7 +101,7 @@ module.exports = {
             '50': '#f4f4f4',
             '100': '#f4f4f4',
             '200': '#F5F8FE', //used
-            '300': '#a7a7a7',
+            '300': '#7A5AF8',
             '400': '#808080',
             '500': '#5a5a5a',
             '600': '#4A4A4A', //used

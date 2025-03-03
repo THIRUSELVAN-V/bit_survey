@@ -1,4 +1,5 @@
 import { Progress } from "@heroui/react";
+import { cn } from "@heroui/react";
 
 interface ProgressBarProps {
   size?: "sm" | "md" | "lg";
@@ -14,27 +15,41 @@ interface ProgressBarProps {
 export const ProgressComp = ({
   size = "sm",
   value = 0, // Default value.
-  color = "bg-blue-500", // Default progress color.
-  outlineColor = "border-gray-300", // Default outline color.
+  color, // We'll dynamically set this based on value
+  outlineColor, // We'll dynamically set this based on value
   isLabelVisible = true, // Default to showing the label.
   label = "Loading...", // Default label text.
-  baseClassName,
+  baseClassName = "",
   isRounded = true,
 }: ProgressBarProps) => {
+  // Determine colors based on progress value
+  const progressColor = value === 100 
+    ? color || "bg-gray-400" 
+    : color || "bg-primary-200";
+  
+  const borderColor = value === 100 
+    ? outlineColor || "border-gray-400" 
+    : outlineColor || "border-primary-200";
+
   return (
-    <div className={`flex flex-col gap-2 ${baseClassName}`}>
+    <div className={cn("flex flex-col gap-2", baseClassName)}>
       {/* Progress Bar */}
-      <Progress
-  aria-label={label}
-  value={value}
-  className={`max-w-md border ${outlineColor} ${isRounded ? "rounded" : "rounded-none"}`}
-  classNames={{
-    base: "h-1",
-    track: "bg-gray-50",
-    indicator: color, // Dynamically apply color
-  }}
-  size={size}
-/>
+      <Progress 
+        aria-label={label}
+        value={value}
+        className={cn(
+          "max-w-md border", 
+          borderColor, 
+          isRounded ? "rounded-full" : "rounded-none"
+        )}
+        classNames={{
+          base: "h-1",
+          track: "bg-gray-50",
+          indicator: progressColor, // Dynamically apply color
+        }}
+        size={size} 
+      />
+      
       {/* Label and Percentage */}
       {isLabelVisible && (
         <div className="flex justify-between items-center">

@@ -44,9 +44,7 @@ export const Darsa = () => {
         label="Primary Chip"
         chipVariant="primary"
         radius="md" // Custom border radius
-        startContent={<span>🚀</span>} // Custom start content
-        endContent={<span>🔥</span>} // Custom end content
-        textClassName="text-blue-800" // Custom text color
+        baseClassName="px-5 py-1"
       />
       <TabBar
         tabs={tabs}
@@ -67,11 +65,6 @@ export const Darsa = () => {
         label="Enter Points"
         placeholder="Enter Points"
         isLabelVisible={false}
-      />
-
-      <ProgressComp
-        value={70}
-        label="Processing..."
       />
 
       {/* <SideBar /> */}
@@ -98,7 +91,8 @@ export const Darsa = () => {
           //progress
           progressValue={100}
           progressLabel="Progress"
-          progressClassName=""
+          progressClassName="bg-primary-600"
+
           //avatar
           avatarUrls={['url1', 'url2', 'url3']}
           responseCount={99}
