@@ -31,3 +31,5 @@ export {NoSurveyCard} from './noSurveyCard'
 export {TabBar} from './switchTab'
 
 export {PredefindTemplateCard} from './predefindTemplateCard'
+
+export {TableSurvey} from './table'
