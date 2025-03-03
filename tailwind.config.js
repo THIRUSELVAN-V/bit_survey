@@ -104,31 +104,34 @@ module.exports = {
             '300': '#7A5AF8',
             '400': '#808080',
             '500': '#5a5a5a',
+            '600': '#4A4A4A', //used
           },
           success: {
-            DEFAULT: '#51BC51',
-            foreground: '#E3FBE3',
+            DEFAULT: '#1FC16B',
+            foreground: '#E0F3F0',
             '50': '#D5F0D5',
             '100': '#1FC16B',
             '200': '#1F7A1F',
             '300': '#C3E8C3',
-            '400': '#2A702A',
+            '400': '#0F8848', //used
             '500': '#31D06E',
-            '600': '#498F49',
-            '700': '#84ebb4',
-            '800': '#1fc16b',
+            '600': '#1FC16B80', //used
+            '700': '#1FC16B1A', //used
+            '800': '#1fc16b', //not
             '900': '#00825F',
           },
           warning: {
-            DEFAULT: '#EA9A3E',
+            DEFAULT: '#FCA465',
             foreground: '#FFEFE5',
             '100': '#F74D0A', //
             '200': '#FF5722', //
             '300': '#9A5B13',
-            '400': '#FFF5E3',
-            '500': '#E8D1C3',
+            '400': '#FEF3F2', //used
+            '500': '#B42318', //used
             '600': '#ffdb43',
-            '700': '#dfb400',
+            '700': '#F97642', //used
+            '800': '#E26001', //used
+            '900': '#C13B06', //used
           },
           danger: {
             DEFAULT: '#A51818',
@@ -168,6 +171,11 @@ module.exports = {
             '700': '#343C6A', //used
             '800': '#DCFAF8', //used
             '900': '#1B1AFF', //used
+            '1001': '#27104E', //used
+            '1002': '#CE91FB', //used
+            '1003': '#DFF2FF', //used
+            '1004': '#007E5C', //used
+            '1005': '#A8CAFF', //used
           } ,
           content2: {
             DEFAULT: '#8F90A6',
@@ -180,8 +188,9 @@ module.exports = {
             '500': '#232323', //used
             '600': '#F5F8FE', //used
             '700': '#1C1C1C', //used
+            '800': '#606060', //used
             
-          }
+          },
         },
       },
       dark: {
