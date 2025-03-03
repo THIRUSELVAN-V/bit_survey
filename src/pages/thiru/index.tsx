@@ -44,7 +44,7 @@ export const Thiru = () => {
             icon={<BsPerson size={27} className="text-warning-200" />}
             text="Skills"
             color="text-warning-200"
-            baseClass="border-warning-100"
+            
           />
           <IconButtonWithText
             icon={<BsPerson size={27} className="text-content1-500" />}
