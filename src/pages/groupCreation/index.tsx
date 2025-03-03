@@ -251,7 +251,7 @@ export const GroupCreation = () => {
                             {/* Deselect All */}
                             <p
                                 className="text-[#E70518] font-semibold cursor-pointer hover:underline"
-                                onClick={() => setFilterGroup([])} // Clear all selected filters
+                                onClick={() => setFilterGroup([])}
                             >
                                 Deselect All
                             </p>
