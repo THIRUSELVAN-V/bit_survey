@@ -5,7 +5,7 @@ import { Header, SideBar, TableSurvey } from "./components";
 const App = () => {
   return (
     <Router>
-      {/* <div className=" h-screen  grid grid-cols-6 bg-content1-50">
+      <div className=" h-screen  grid grid-cols-6 bg-content1-50">
         <SideBar />
         <div className="col-span-5 h-screen">
           <div className="h-[13%]">
@@ -15,8 +15,7 @@ const App = () => {
             <PublicRoute />
           </div>
         </div>
-      </div> */}
-      <TableSurvey/>
+      </div>
     </Router>
   );
 };
