@@ -1,6 +1,8 @@
 import { Route, Routes } from "react-router-dom"
 import { Darsa, Dashboard, Mentoring, MySurveys, Templates, Thiru ,GroupCreation } from "../pages"
 
+import { Response } from "../pages/Response";
+
 export const PublicRoute = () => {
   return (
     <Routes>
@@ -11,6 +13,7 @@ export const PublicRoute = () => {
         <Route path="/darsa" element={<Darsa/>}/>
         <Route path="/templates" element={<Templates/>}/>
         <Route path="/groupCreation" element={<GroupCreation/>}/>
+      <Route path="/response" element={<Response/>} />
     </Routes>
   )
 }
