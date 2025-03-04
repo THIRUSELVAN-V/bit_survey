@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   ComonPopup,
   Modals,
@@ -11,6 +11,7 @@ import {
 import { FeaturedTickIcon, PlusShield, ShieldIcon } from "../../assets";
 import { surveyCardsData } from "./utils";
 import { useNavigate } from "react-router-dom";
+import { getRequest } from "../../util/axios";
 export const Dashboard = () => {
   const [isSurvey, setIsSurvey] = React.useState(true);
 
@@ -48,6 +49,9 @@ export const Dashboard = () => {
       description: "Add members",
     },
   ];
+  useEffect(()=>{
+    getRequest("jwt").then((res) => {console.log(res)})
+  },[])
 
   const [activeTab, setActiveTab] = React.useState("tab1");
 
