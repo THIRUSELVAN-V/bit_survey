@@ -27,10 +27,9 @@ export const SideBar = () => {
     { id: 1, name: "Dashboard", icon: <MdOutlineDashboard size={20}/>,path:"/" },
     { id: 2, name: "My Surveys", icon: <LuFileSearch2 size={20} />,path:"/mySurveys" },
     { id: 3, name: "Mentoring", icon: <IoPeopleOutline size={20} />,path:"/mentoring" },
-    { id: 4, name: "Templates", icon: <IoPeopleOutline size={20} />,path:"/templates" },
     { id: 5, name: "Thiru", icon: <IoPeopleOutline size={20} />,path:"/thiru" },
     { id: 6, name: "Darsa", icon: <IoPeopleOutline size={20} />,path:"/darsa" },
-    {id: 7, name: "GroupCreation", icon: <LuFileSearch2 size={20} />,path:"/groupCreation"},
+    {id: 8, name: "Question", icon: <LuFileSearch2 size={20} />,path:"/question"},
     
   ];
 

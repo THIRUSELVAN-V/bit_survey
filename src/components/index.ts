@@ -31,3 +31,13 @@ export {NoSurveyCard} from './noSurveyCard'
 export {TabBar} from './switchTab'
 
 export {PredefindTemplateCard} from './predefindTemplateCard'
+
+export {TableSurvey} from './table'
+
+export {ComonPopup} from './comonPopup'
+export {GroupCreation} from './groupCreation'
+export {CreateSurvey} from './createSurvey'
+export {CreateQuestion} from './createQuestion'
+export { QuestionDisplay } from './questionDisplay'
+
+export { OptionsBox } from './OptionsBox'
