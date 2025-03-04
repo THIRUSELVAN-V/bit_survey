@@ -10,5 +10,6 @@ export {MySurveys} from "./mySurveys"
 
 export {Mentoring} from "./mentoring"
 
-export {GroupCreation} from "../components/groupCreation"
 export {SurveyCreation} from "./surveyCreation"
+
+export { DisplayQuestion } from "./displayQuestion"

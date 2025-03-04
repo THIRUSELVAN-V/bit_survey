@@ -128,6 +128,8 @@ export const GroupCreation = ({
         },
     ];
 
+
+
     return (
         <div className="bg-background h-full rounded-md  flex flex-col ">
             <div className="flex items-center pt-[1.125rem] px-7 justify-between">

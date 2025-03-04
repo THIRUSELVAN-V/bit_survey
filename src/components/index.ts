@@ -38,3 +38,6 @@ export {ComonPopup} from './comonPopup'
 export {GroupCreation} from './groupCreation'
 export {CreateSurvey} from './createSurvey'
 export {CreateQuestion} from './createQuestion'
+export { QuestionDisplay } from './questionDisplay'
+
+export { OptionsBox } from './OptionsBox'

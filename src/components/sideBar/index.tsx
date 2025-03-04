@@ -29,6 +29,7 @@ export const SideBar = () => {
     { id: 3, name: "Mentoring", icon: <IoPeopleOutline size={20} />,path:"/mentoring" },
     { id: 5, name: "Thiru", icon: <IoPeopleOutline size={20} />,path:"/thiru" },
     { id: 6, name: "Darsa", icon: <IoPeopleOutline size={20} />,path:"/darsa" },
+    {id: 8, name: "Question", icon: <LuFileSearch2 size={20} />,path:"/question"},
     
   ];
 
