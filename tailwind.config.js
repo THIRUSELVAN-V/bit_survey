@@ -144,6 +144,7 @@ module.exports = {
             '300': '#E8BABA',
             '400': '#fb3748',
             '500': '#d00416',
+            '600': '#E70518',
             '1000': '#FD5367',
           } ,
           background: {
@@ -178,6 +179,7 @@ module.exports = {
             '1003': '#DFF2FF', //used
             '1004': '#007E5C', //used
             '1005': '#A8CAFF', //used
+            '1006': '#005840', //used
           } ,
           content2: {
             DEFAULT: '#8F90A6',
@@ -191,6 +193,9 @@ module.exports = {
             '600': '#F5F8FE', //used
             '700': '#1C1C1C', //used
             '800': '#606060', //used
+            '900': '#D8DEE2', //used
+            '1001': '#6B778C', //used
+            '1002': '#A4A4A4', //used
             
           },
         },

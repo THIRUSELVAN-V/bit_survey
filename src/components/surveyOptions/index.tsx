@@ -17,7 +17,7 @@ export const SurveyOption = ({
   onClick = () => false,
 }: SurveyOptionProps) => {
   return (
-    <div onClick={onClick} className=" border-primary-800 border rounded-[10px] flex items-center gap-4 py-2 px-5">
+    <div onClick={onClick} className=" border-primary-800 border cursor-pointer rounded-[10px] flex items-center gap-4 py-2 px-5">
       {/* Icon Container */}
       <div
         className={cn(
