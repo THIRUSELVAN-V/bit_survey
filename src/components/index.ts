@@ -33,3 +33,7 @@ export {TabBar} from './switchTab'
 export {PredefindTemplateCard} from './predefindTemplateCard'
 
 export {TableSurvey} from './table'
+
+export { QuestionDisplay } from './questionDisplay'
+
+export { OptionsBox } from './OptionsBox'

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ButtonComponent, Chip, IconButtonComponent, IconButtonWithText, NoGroupCreationCard, NumberInputComp } from '../../components';
+import { ButtonComponent, Chip, IconButtonComponent, IconButtonWithText, NoGroupCreationCard } from '../../components';
 import { IoMdCloseCircleOutline } from 'react-icons/io';
 import { Divider, NumberInput } from '@heroui/react';
 import { MdOutlineWorkOutline } from 'react-icons/md';
@@ -62,7 +62,6 @@ export const GroupCreation = () => {
                 return;
             }
             setError("");
-            console.log("Above:", aboveValue, "Below:", belowValue);
         }
         console.log("Selected Filters:", filterGroup);
     };
@@ -107,6 +106,8 @@ export const GroupCreation = () => {
             specifications: [{ id: 1, name: 'Students' }, { id: 2, name: 'Faculty' }, { id: 3, name: 'M-team' }],
         },
     ];
+
+
 
     return (
         <div className="bg-background h-full rounded-md p-4 flex flex-col">
@@ -202,8 +203,8 @@ export const GroupCreation = () => {
                         <div className="flex flex-wrap gap-3 pt-4">
                             <div className="w-full sm:w-[230px]">
                                 <p className="font-semibold text-[#6B778C]">Above</p>
-                                <NumberInput                                    placeholder="Enter Points"
-                                    onValueChange={ setAboveValue}
+                                <NumberInput placeholder="Enter Points"
+                                    onValueChange={setAboveValue}
                                     aria-label="Enter Above Points"
                                 />
                             </div>
@@ -251,7 +252,7 @@ export const GroupCreation = () => {
                             {/* Deselect All */}
                             <p
                                 className="text-[#E70518] font-semibold cursor-pointer hover:underline"
-                                onClick={() => setFilterGroup([])} // Clear all selected filters
+                                onClick={() => setFilterGroup([])}
                             >
                                 Deselect All
                             </p>
