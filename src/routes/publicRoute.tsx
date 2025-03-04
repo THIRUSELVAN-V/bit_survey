@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom"
-import { Darsa, Dashboard, Mentoring, MySurveys, Templates, Thiru ,GroupCreation } from "../pages"
+import { Darsa, Dashboard, Mentoring, MySurveys, SurveyCreation, Templates, Thiru } from "../pages"
 
 export const PublicRoute = () => {
   return (
@@ -10,7 +10,7 @@ export const PublicRoute = () => {
         <Route path="/thiru" element={<Thiru/>}/>
         <Route path="/darsa" element={<Darsa/>}/>
         <Route path="/templates" element={<Templates/>}/>
-        <Route path="/groupCreation" element={<GroupCreation/>}/>
+        <Route path="/surveyCreation" element={<SurveyCreation/>}/>
     </Routes>
   )
 }

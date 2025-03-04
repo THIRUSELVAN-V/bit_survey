@@ -9,4 +9,6 @@ export {Templates} from "./templates"
 export {MySurveys} from "./mySurveys"
 
 export {Mentoring} from "./mentoring"
-export {GroupCreation} from "./groupCreation"
+
+export {GroupCreation} from "../components/groupCreation"
+export {SurveyCreation} from "./surveyCreation"

@@ -13,3 +13,6 @@ export {Logo} from "./logo"
 export {PlusShield} from "./plusShield"
 
 export {BagIcon} from "./bagIcon"
+export {RpIcon} from "./rpIcon"
+
+export {FeaturedTickIcon} from "./featuredTickIcon"

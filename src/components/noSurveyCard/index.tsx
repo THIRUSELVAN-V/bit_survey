@@ -2,7 +2,12 @@
 import { BagIcon } from "../../assets";
 import { ButtonComponent } from "../button";
 import { FiPlus } from "react-icons/fi";
-export const NoSurveyCard = () => {
+interface NoSurveyCardProps{
+  onButtonClick?:()=>void;
+}
+export const NoSurveyCard = ({
+  onButtonClick =()=>false,
+}:NoSurveyCardProps) => {
   return (
     <div className=" flex items-center justify-center h-full flex-col">
       <div className="p-10 bg-content2-300 w-fit rounded-full mb-10">
@@ -24,6 +29,7 @@ export const NoSurveyCard = () => {
         buttonText="New Survey"
         textClassName="text-background text-base"
         baseClassName="border-none rounded-xl"
+        handleOnClick={onButtonClick}
       />
     </div>
   );

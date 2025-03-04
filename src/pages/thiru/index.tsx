@@ -2,6 +2,7 @@ import React from "react";
 import {
   ButtonComponent,
   Chip,
+  ComonPopup,
   IconButtonComponent,
   IconButtonWithText,
   Modals,
@@ -13,6 +14,7 @@ import { InputField } from "../../components/inputField";
 import { MdOutlineWorkOutline } from "react-icons/md";
 import { BsPerson } from "react-icons/bs";
 import { MdOutlineSchool } from "react-icons/md";
+import { FeaturedTickIcon } from "../../assets";
 export const Thiru = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
@@ -23,6 +25,17 @@ export const Thiru = () => {
   };
   return (
     <div className=" ">
+      
+      <div className="p-5">
+        <ComonPopup
+          icon={<FeaturedTickIcon/>}
+          bodyContent={<p className="font-semibold text-[19px] text-content2-100">Choose your choice</p>}
+          button1Text="templates"
+          button2Text="Create new"
+          Button1Variant="solid"
+          Button2Variant="solid"
+        />
+      </div>
       
       <div className="">
         <ButtonComponent />
