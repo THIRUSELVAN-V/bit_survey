@@ -1,5 +1,5 @@
 import React from "react";
-import { Chip, NumberInputComp, ProgressComp, SelectInput, SideBar, SurveyCard, SurveyOption } from "../../components"
+import { Chip, NumberInputComp, QuestionDisplay, SelectInput, SideBar, SurveyCard, SurveyOption, TableSurvey } from "../../components"
 import { TabBar } from "../../components/switchTab";
 import { PlusShield } from "../../assets/plusShield";
 
@@ -78,31 +78,9 @@ export const Darsa = () => {
       />
 </div>
 
-      <div className="w-[55vh]">
-        <SurveyCard
-          // chip
-          chipLabel="Completed"
-          chipVariant="primary"
-          chipBaseClassName="bg-warning-200 rounded-md "
-          chipTextClassName="text-warning-100 py-2 font-medium text-sm"
-          // Header
-          subtitle="Survey Subtitle"
-          description="This is a description of the survey."
-          //progress
-          progressValue={100}
-          progressLabel="Progress"
-          progressClassName="bg-primary-600"
 
-          //avatar
-          avatarUrls={['url1', 'url2', 'url3']}
-          responseCount={99}
-          //button
-          buttonText="View"
-          //card
-          bgColor="#F5F8FE"
-          textColor="text-gray-800"
-        />
-      </div>
+      
+
     </div>
   )
 }

@@ -107,6 +107,8 @@ export const GroupCreation = () => {
         },
     ];
 
+
+
     return (
         <div className="bg-background h-full rounded-md p-4 flex flex-col">
             <div className="flex items-center justify-between">
@@ -251,11 +253,6 @@ export const GroupCreation = () => {
                             <p
                                 className="text-[#E70518] font-semibold cursor-pointer hover:underline"
                                 onClick={() => setFilterGroup([])}
-                                onKeyUp={(e) => {
-                                    if (e.key === 'Enter' || e.key === ' ') {
-                                        setFilterGroup([]);
-                                    }
-                                }}
                             >
                                 Deselect All
                             </p>
