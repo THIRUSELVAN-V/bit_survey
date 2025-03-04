@@ -1,5 +1,5 @@
 import React from 'react';
-import { OptionsBox, QuestionDisplay } from '../../components';
+import { OptionsBox, PreviewQuestions, QuestionDisplay } from '../../components';
 import { questionData } from '../../pages/displayQuestion/utils';
 
 export const DisplayQuestion = () => {
@@ -15,6 +15,20 @@ export const DisplayQuestion = () => {
         "Shuffle answers for each respondent (does not apply to 'Other' or 'None of the Above' answer choices)",
         "Shuffle questions for each respondent ",
         "Skip based on responent’s answer"
+    ]
+
+    const PreviewData = [
+        {
+            id: 1,
+            question: "What is your favorite color?",
+            options: ["Red", "Green", "Yellow", "Purple"],
+        },
+        {
+            id: 2,
+            question: "Which of the following are backend frameworks?",
+            options: ["Express", "Django", "Flask", "Spring", "Laravel"],
+        }
+
     ]
 
     return (
@@ -36,10 +50,14 @@ export const DisplayQuestion = () => {
                 <p className="text-content2-100">No questions of type "{questionType}" found.</p>
             )} */}
 
-            
-            <OptionsBox
+
+            {/* <OptionsBox
             options={OptionsData}
-            className=""/>
+            className=""/> */}
+
+            <PreviewQuestions 
+            question={PreviewData.question}
+            options={PreviewData.options}/>
         </div>
     );
 };

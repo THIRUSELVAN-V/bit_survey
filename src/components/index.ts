@@ -37,3 +37,5 @@ export {TableSurvey} from './table'
 export { QuestionDisplay } from './questionDisplay'
 
 export { OptionsBox } from './OptionsBox'
+
+export { PreviewQuestions } from './previewQuestions'
