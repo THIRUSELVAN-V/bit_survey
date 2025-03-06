@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { ButtonComponent, Chip, IconButtonComponent, IconButtonWithText, Modals, NoGroupCreationCard, } from '..';
+import { ButtonComponent, Chip, IconButtonComponent, IconButtonWithText, Modals, NoGroupCreationCard, TableSurvey, } from '..';
 import { IoMdCloseCircleOutline } from 'react-icons/io';
 import { Divider, NumberInput } from '@heroui/react';
 import { MdOutlineWorkOutline } from 'react-icons/md';
@@ -8,6 +8,7 @@ import { GoDotFill } from 'react-icons/go';
 import { IoClose } from 'react-icons/io5';
 import { RpIcon } from '../../assets';
 import { useGroupStore, useRoleStore, useSkillStore } from '../../store/group';
+import { columns, Response, users } from '../../pages/Response';
 
 interface SpecificationListProps {
     id: number;
@@ -338,7 +339,7 @@ export const GroupCreation = ({
                      <Modals
                             ModalContents={
                               <div className="h-full  ">
-                                
+                                <TableSurvey visibleColumn={["name", "role", "email"]} data={users} columns={columns}/>
                               </div>
                             }
                             // ModalFooterContent={<div></div>}
