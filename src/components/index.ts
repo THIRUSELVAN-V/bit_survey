@@ -43,8 +43,11 @@ export {CreateSurvey} from './createSurvey'
 export {CreateQuestion} from './createQuestion'
 
 export { QuestionDisplay } from './questionDisplay'
+
 export { QuestionAndOptionsCreation } from './questionAndOptionsCreation'
+
 export { PreDefinedOptions } from './preDefinedOptions'
+
 export { CreateOptions } from './createOptions'
 
 export { OptionsBox } from './OptionsBox'
@@ -56,3 +59,5 @@ export{TextAreaComp} from './textArea'
 export {PreviewModel} from './PreviewModel'
 
 export {BulkAnswers} from './bulkAnswers'
+
+export {LoginComp} from './login'
