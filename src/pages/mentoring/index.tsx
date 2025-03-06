@@ -5,7 +5,7 @@ export const Mentoring = () => {
   
       const [activeTab, setActiveTab] = React.useState("tab1");
       
-      const renderSurveyCards = (filterStatus:string[] |null) => {
+      const renderSurveyCards = (filterStatus:string[] | null ) => {
           const filteredData = filterStatus
             ? surveyCardsData.filter((card) => filterStatus.includes(card.surveyStatus))
             : surveyCardsData;

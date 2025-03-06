@@ -121,6 +121,8 @@ module.exports = {
             '700': '#1FC16B1A', //used
             '800': '#1fc16b', //not
             '900': '#00825F',
+            '1000':"#027A48",
+            "1001":'#ECFDF3'
           },
           warning: {
             DEFAULT: '#FCA465',
