@@ -48,7 +48,7 @@ export const GroupCreation = ({
     const handleSetConditionClick = () => setGroupCreation(true);
 
     const handleGroupTypeClick = (value: SpecificationListProps[] | undefined, groupType: string) => {
-        setFilterGroup([]); // Reset filterGroup
+        
         setSpecificationList(value);
         setLevelList([]); // Reset level list
         setSelectedSpecification(null); // Reset selected specification
@@ -165,7 +165,7 @@ export const GroupCreation = ({
                         ))}
                     </div>
 
-                    <div className='sm:flex pt-[1.375rem] h-full'>
+                    <div className='sm:flex pt-[1.375rem]  h-full'>
                         <div>
                     {/* Render Skills specifications */}
                     {specificationList && selectedGroupType === 'Skills' && (

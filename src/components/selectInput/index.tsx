@@ -1,41 +1,59 @@
-import { Select, SelectItem } from "@heroui/react";
+import { cn, Select, SelectItem } from "@heroui/react";
 
+interface selectOptionsType{
+  key?:number;
+  label?:string;
+}
 interface SelectInputProps {
-  options: { key: string; label: string }[];
+  selectOptions:selectOptionsType[];
   placeholder?: string;
   className?: string;
-  onSelectionChange?: (key: string) => void;
+  variant?: "flat" | "bordered" | "faded" | "underlined" | undefined;
+  radius?: "none" | "sm" | "md" | "lg" | "full" | undefined;
+  size?: "sm" | "md" | "lg" | undefined;
+  baseClassName?:string;
+  listBoxClassName?:string;
+  selectedKeys?:any;
+  onSelectionChange?:any;
+  isDisabled?:boolean;
 }
 
 export const SelectInput = ({
-  options,
+  selectOptions,
   placeholder = "Select an option",
+  variant="bordered",
+  radius="none",
+  size="lg",
   className,
+  baseClassName,
+  listBoxClassName,
+  selectedKeys,
   onSelectionChange,
+  isDisabled=false,
 }: SelectInputProps) => {
-  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedKey = event.target.value;
-    onSelectionChange?.(selectedKey);
-  };
-
+  
+  
+  
   return (
-    <div>
     <Select
-    classNames={{
-        base: "rounded-none", 
-        trigger: "rounded-none", 
-      }}
+      className={cn("max-w-[20rem]",className)}
+      isDisabled={isDisabled}
       placeholder={placeholder}
-      variant="bordered"
-      onChange={handleChange}
-      className={className} 
+      aria-label="Question Type"
+      variant={variant}
+      radius={radius}
+      size={size}
+      selectedKeys={selectedKeys}
+      onSelectionChange={onSelectionChange}
+      classNames={{
+        base: cn("bg-background border border-content2-1004",baseClassName),
+        trigger: "border-none",
+        listboxWrapper: cn("bg-background-900 rounded-[8px]",listBoxClassName),
+      }}
     >
-      {options?.map((option) => (
-        <SelectItem key={option.key} >
-          {option.label}
-        </SelectItem>
+      {selectOptions.map((option) => (
+        <SelectItem key={option.key}>{option.label}</SelectItem>
       ))}
     </Select>
-  </div>
   );
 };
