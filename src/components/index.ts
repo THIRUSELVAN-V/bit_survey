@@ -39,5 +39,8 @@ export {GroupCreation} from './groupCreation'
 export {CreateSurvey} from './createSurvey'
 export {CreateQuestion} from './createQuestion'
 export { QuestionDisplay } from './questionDisplay'
+export { QuestionAndOptionsCreation } from './questionAndOptionsCreation'
+export { PreDefinedOptions } from './preDefinedOptions'
+export { CreateOptions } from './createOptions'
 
 export { OptionsBox } from './OptionsBox'
