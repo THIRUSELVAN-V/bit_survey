@@ -40,7 +40,7 @@ export const Darsa = () => {
   ];
 
   return (
-    <div className="bg-background min-h-full rounded-md">
+    <div className="bg-background h-full rounded-md">
       {/* <Chip
         label="Primary Chip"
         chipVariant="primary"
