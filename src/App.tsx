@@ -1,6 +1,6 @@
 import { BrowserRouter as Router } from "react-router-dom";
 import { PublicRoute } from "./routes";
-import { Header, SideBar} from "./components";
+import { Header, SideBar } from "./components";
 
 const App = () => {
   return (
@@ -16,6 +16,7 @@ const App = () => {
           </div>
         </div>
       </div>
+    
     </Router>
   );
 };

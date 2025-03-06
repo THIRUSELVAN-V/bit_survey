@@ -121,6 +121,8 @@ module.exports = {
             '700': '#1FC16B1A', //used
             '800': '#1fc16b', //not
             '900': '#00825F',
+            '1000':"#027A48",
+            "1001":'#ECFDF3'
           },
           warning: {
             DEFAULT: '#FCA465',
@@ -180,6 +182,8 @@ module.exports = {
             '1004': '#007E5C', //used
             '1005': '#A8CAFF', //used
             '1006': '#005840', //used
+            '1007': '#777777', //used
+            '1008': '#A7A7A7', //used
           } ,
           content2: {
             DEFAULT: '#8F90A6',
@@ -196,6 +200,8 @@ module.exports = {
             '900': '#D8DEE2', //used
             '1001': '#6B778C', //used
             '1002': '#A4A4A4', //used
+            '1003': '#F4F5F5', //used
+            '1004': '#D0D2D3', //used
             
           },
         },
