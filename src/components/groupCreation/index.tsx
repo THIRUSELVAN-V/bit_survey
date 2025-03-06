@@ -127,7 +127,6 @@ export const GroupCreation = ({
         setError(""); // Clear error
     };
   
-
     const groupData = [
         {
             id: 1,
