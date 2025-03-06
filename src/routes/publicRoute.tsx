@@ -9,6 +9,7 @@ import {
   DisplayQuestion,
   SurveyCreation,
 } from "../pages";
+import Login from "../pages/login";
 
 export const PublicRoute = () => {
   return (
@@ -21,6 +22,7 @@ export const PublicRoute = () => {
       <Route path="/templates" element={<Templates />} />
       <Route path="/surveyCreation" element={<SurveyCreation />} />
       <Route path="/question" element={<DisplayQuestion />} />
+      <Route path="/login" element={<Login />} />
     </Routes>
   );
 };

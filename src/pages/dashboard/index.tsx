@@ -12,13 +12,14 @@ import { FeaturedTickIcon, PlusShield, ShieldIcon } from "../../assets";
 import { surveyCardsData } from "./utils";
 import { useNavigate } from "react-router-dom";
 import { getRequest } from "../../util/axios";
+import { useSkillStore } from "../../store/group";
 export const Dashboard = () => {
   const [isSurvey, setIsSurvey] = React.useState(true);
 
   const [filterGroup, setFilterGroup] = React.useState([]);
   const [rpBelowValue, setRpBelowValue] = React.useState<number | null>(null);
   const [rpAboveValue, setRpAboveValue] = React.useState<number | null>(null);
-
+  const skillbackend = useSkillStore((state) => state.getSkillfromBackend)
   const navigate = useNavigate();
 
   const handleGroupCreationSubmit = () => {
@@ -49,9 +50,9 @@ export const Dashboard = () => {
       description: "Add members",
     },
   ];
-  useEffect(()=>{
-    getRequest("jwt").then((res) => {console.log(res)})
-  },[])
+  useEffect(() => {
+    skillbackend();
+      }, []);
 
   const [activeTab, setActiveTab] = React.useState("tab1");
 

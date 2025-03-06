@@ -13,7 +13,7 @@ const axiosClient = axios.create({
 axiosClient.interceptors.request.use(
     (config: InternalAxiosRequestConfig): InternalAxiosRequestConfig => {
         // Add Authorization token dynamically before sending the request
-        const token = localStorage.getItem("token");
+        const token = localStorage.getItem("access_token");
         if (token) {
             config.headers.Authorization = `Bearer ${token}`;
         }
@@ -44,7 +44,9 @@ axiosClient.interceptors.response.use(
 
 export async function getRequest<T>(URL: string, headers = {}) {
     const response = await axiosClient.get<T>(URL, {
+        
         headers,
+         
     });
     return response;
 }
@@ -56,7 +58,9 @@ export async function postRequest<T>(
 ) {
 
     const response = await axiosClient.post<T>(URL, payload, {
+        withCredentials: true,
         headers,
+        
     });
     return response;
 }
