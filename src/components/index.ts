@@ -35,9 +35,22 @@ export {PredefindTemplateCard} from './predefindTemplateCard'
 export {TableSurvey} from './table'
 
 export {ComonPopup} from './comonPopup'
+
 export {GroupCreation} from './groupCreation'
+
 export {CreateSurvey} from './createSurvey'
+
 export {CreateQuestion} from './createQuestion'
+
 export { QuestionDisplay } from './questionDisplay'
+export { QuestionAndOptionsCreation } from './questionAndOptionsCreation'
+export { PreDefinedOptions } from './preDefinedOptions'
+export { CreateOptions } from './createOptions'
 
 export { OptionsBox } from './OptionsBox'
+
+export { PreviewQuestions } from './previewQuestions'
+
+export{TextAreaComp} from './textArea'
+
+export {PreviewModel} from './PreviewModel'

@@ -1,7 +1,8 @@
 import React from "react";
-import { Chip, NumberInputComp, QuestionDisplay, SelectInput, SideBar, SurveyCard, SurveyOption, TableSurvey } from "../../components"
+import { Chip, NumberInputComp, QuestionDisplay, SelectInput, SideBar, SurveyCard, SurveyOption, TableSurvey, TextAreaComp } from "../../components"
 import { TabBar } from "../../components/switchTab";
 import { PlusShield } from "../../assets/plusShield";
+import { PreviewModel } from "../../components/PreviewModel";
 
 
 
@@ -39,8 +40,8 @@ export const Darsa = () => {
   ];
 
   return (
-    <div>
-      <Chip
+    <div className="bg-background min-h-full rounded-md">
+      {/* <Chip
         label="Primary Chip"
         chipVariant="primary"
         radius="md" // Custom border radius
@@ -68,7 +69,7 @@ export const Darsa = () => {
       />
 
       {/* <SideBar /> */}
-<div className="w-[35vh]">
+{/* <div className="w-[35vh]">
       <SurveyOption
         iconBgColor="bg-primary-600"
         icon={<PlusShield/>}
@@ -76,10 +77,29 @@ export const Darsa = () => {
         description="Explore new paths"
         // onClick={handleClick} // Optional
       />
-</div>
+</div>  */}
+
+{/* <TextAreaComp 
+className='border-2 border-gray-200 px-3 py-2'
+placeholder='Add each question and answer choice on its own line. Press enter on your keyboard twice to separate each question.
+
+For Example:
+
+What is your favorite color?
+Blue
+Orange
+Green
 
 
-      
+What is your favorite shape?
+Circle
+Triangle
+Square
+Hexagon'
+/> */}
+
+<PreviewModel
+/>
 
     </div>
   )
