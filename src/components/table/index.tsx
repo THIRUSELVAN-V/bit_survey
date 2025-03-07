@@ -251,7 +251,7 @@ export function TableSurvey({ visibleColumn, isSearch, setSelectedKeys,selectedK
                         </select>
                     </label> */}
                 </div>}
-                {isCreate && <ButtonComponent handleOnClick={createfunction} baseClassName="border-secondary-700  items-center gap-2 h-max  bg-primary       w-max p-2 px-8 " buttonText="Create" isIcon={false} textClassName="!text-background font-regular " />
+                {isCreate && <ButtonComponent handleOnClick={createfunction} baseClassName="border-secondary-700  items-center gap-2 h-max  bg-primary       w-max p-2 px-8  bg-primary hover:!bg-primary data-[hover=true]:!bg-primary" buttonText="Create" isIcon={false} textClassName="!text-background font-regular " />
     }
                 </div>
             </div>

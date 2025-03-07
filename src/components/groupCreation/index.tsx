@@ -343,7 +343,7 @@ export const GroupCreation = ({
                      <Modals
                         
                             ModalContents={
-                            <StudentFilter filterGroup={filterGroup} data={groupStudent}/>
+                            <StudentFilter handleCloseGroupStudentpopup={handleCloseGroupStudentpopup} filterGroup={filterGroup} data={groupStudent}/>
                             }
                             // ModalFooterContent={<div></div>}
                         isopen={openGroupStudentpopup}
