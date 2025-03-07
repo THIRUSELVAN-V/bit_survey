@@ -10,6 +10,7 @@ interface InputFieldProps {
 	radius?:"sm" | "md" | "lg" | "none" | "full" | undefined;
 	baseClaseName?:string;
 	isDisabled?:boolean;
+	type?:string
 }
 
 export const InputField = ({
@@ -20,6 +21,7 @@ export const InputField = ({
 	size="lg",
 	radius="none",
 	baseClaseName,
+	type="text",
 	isDisabled=false,
 
 }: InputFieldProps) => {
@@ -35,6 +37,7 @@ export const InputField = ({
 		  isDisabled={isDisabled}
           size={size}
           radius={radius}
+		  type={type}
           classNames={{
             base:cn("bg-background border border-content2-1004 ",baseClaseName),
             inputWrapper:"border-none"

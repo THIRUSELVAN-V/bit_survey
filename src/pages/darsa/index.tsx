@@ -1,8 +1,9 @@
 import React from "react";
-import { Chip, NumberInputComp, QuestionDisplay, SelectInput, SideBar, SurveyCard, SurveyOption, TableSurvey, TextAreaComp } from "../../components"
+import { BulkAnswers, Chip, LoginComp, NumberInputComp, QuestionDisplay, SelectInput, SideBar, SurveyCard, SurveyOption, TableSurvey, TextAreaComp } from "../../components"
 import { TabBar } from "../../components/switchTab";
 import { PlusShield } from "../../assets/plusShield";
 import { PreviewModel } from "../../components/PreviewModel";
+import Login from "../login";
 
 
 
@@ -40,7 +41,7 @@ export const Darsa = () => {
   ];
 
   return (
-    <div className="bg-background min-h-full rounded-md">
+    <div className="bg-background h-full rounded-md">
       {/* <Chip
         label="Primary Chip"
         chipVariant="primary"
@@ -98,8 +99,11 @@ Square
 Hexagon'
 /> */}
 
-<PreviewModel
-/>
+{/* <PreviewModel/> */}
+
+{/* <BulkAnswers/> */}
+
+<LoginComp/>
 
     </div>
   )
