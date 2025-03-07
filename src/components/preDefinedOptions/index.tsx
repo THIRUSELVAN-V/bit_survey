@@ -5,8 +5,8 @@ import { useQuestionStore } from "../../store/useQuestionStore";
 interface PreDefinedOptionsProps{
     isSelected?:boolean;
     setIsSelected?: (val:boolean)=>void;
-    scale:{key:number,label:string}[];
-    predefinedOptions:{key:number,label:string}[];
+    scale:{id:number,label:string}[];
+    predefinedOptions:{id:number,label:string}[];
 }
 
 export const PreDefinedOptions = ({
@@ -18,6 +18,8 @@ export const PreDefinedOptions = ({
     const {
         selectedScale,
         setSelectedScale,
+        selectedPreDefinedOptions,
+        setSelectedPreDefinedOptions,
     } = useQuestionStore()
   
   return (
@@ -37,6 +39,8 @@ export const PreDefinedOptions = ({
         <SelectInput 
             selectOptions={predefinedOptions} 
             isDisabled={!isSelected}
+            selectedKeys={selectedPreDefinedOptions}
+            onSelectionChange={setSelectedPreDefinedOptions}
             size="sm" 
             baseClassName="w-[13rem] rounded-[3px]"
         />

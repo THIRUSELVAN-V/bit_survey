@@ -1,7 +1,7 @@
 import { cn, Select, SelectItem } from "@heroui/react";
 
 interface selectOptionsType{
-  key?:number;
+  id?:number;
   label?:string;
 }
 interface SelectInputProps {
@@ -52,7 +52,7 @@ export const SelectInput = ({
       }}
     >
       {selectOptions.map((option) => (
-        <SelectItem key={option.key}>{option.label}</SelectItem>
+        <SelectItem key={option.id}>{option.label}</SelectItem>
       ))}
     </Select>
   );

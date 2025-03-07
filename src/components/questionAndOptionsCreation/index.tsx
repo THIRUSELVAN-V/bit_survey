@@ -1,9 +1,12 @@
 import { InputField } from "../inputField";
 import { SelectInput } from "../selectInput";
 import { PreDefinedOptions } from "../preDefinedOptions";
-import { useQuestionStore } from "../../store/useQuestionStore";
+import {  useQuestionStore } from "../../store/useQuestionStore";
 import { CreateOptions } from "../createOptions";
 import { OptionsBox } from "../OptionsBox";
+import { ButtonComponent } from "../button";
+import { FiPlus } from "react-icons/fi";
+import React from "react";
 
 export const QuestionAndOptionsCreation = () => {
   const {
@@ -16,10 +19,43 @@ export const QuestionAndOptionsCreation = () => {
     scale,
     predefinedOptions,
     questionTypes,
+    getPredefinedOptions,
+    getQuestionTypes,
+    isScore,
+    setIsScore,
+    isOther,
+    setIsOther,
+    createQuestion
+    
   } = useQuestionStore();
+
   
   const selectedQType = Array.from(selectedQuestionType)[0];
   console.log(selectedQType);
+
+
+  React.useEffect(()=>{
+    getPredefinedOptions();
+    getQuestionTypes()
+  },[])
+  const oo=[
+    {id:1,name:"Score this question (enable quiz mode)"},
+    {id:2,name:'Add an "Other" Answer Option '},
+  ]
+  const initialSelectedOptions = [];
+if (isScore) {
+    initialSelectedOptions.push({ id: 1, name: "Score this question (enable quiz mode)" });
+}
+if (isOther) {
+    initialSelectedOptions.push({ id: 2, name: 'Add an "Other" Answer Option ' });
+}
+
+  const onCheckBoxSelected = (val:{id:number,name:string}[])=>{
+    setIsScore(val.some(opt => opt.id === 1));
+    setIsOther(val.some(opt => opt.id === 2));
+  }
+  console.log("hi",isScore,isOther);
+  
   return (
     <div>
       <div className="bg-content2-1003 pt-2">
@@ -46,15 +82,45 @@ export const QuestionAndOptionsCreation = () => {
           />
         </div>
         <div className="px-9 py-7 ">
-          <CreateOptions/>
+          <CreateOptions />
         </div>
         <div>
           <OptionsBox
-            options={["Score this question (enable quiz mode)",'Add an "Other" Answer Option ']}
+            options={oo}
+            onCheckBoxSelected={onCheckBoxSelected}
+            selectedOptions={[
+              ...(isScore ? [{ id: 1, name: "Score this question (enable quiz mode)" }] : []),
+              ...(isOther ? [{ id: 2, name: 'Add an "Other" Answer Option ' }] : [])
+          ]}
           />
         </div>
       </div>
-      questionAndOptionsCreation
+      <div className="px-5 pt-4 flex justify-between">
+        <ButtonComponent
+          bgColor="bg-primary"
+          buttonIcon={<FiPlus size={24} className="text-background " />}
+          buttonText="Next question"
+          textClassName="text-background text-base"
+          baseClassName="border-none rounded-[4px]"
+          handleOnClick={()=>createQuestion()}
+        />
+        <div className="flex gap-5">
+          <ButtonComponent
+            isIcon={false}
+            ButtonVariant="bordered"
+            buttonText="Cancel"
+            textClassName="text-content1-1007  text-base"
+            baseClassName="  rounded-[4px] w-fit px-6"
+          />
+          <ButtonComponent
+            bgColor="bg-primary"
+            isIcon={false}
+            buttonText="Finish survey"
+            textClassName="text-background text-base"
+            baseClassName="border-none rounded-[4px]"
+          />
+        </div>
+      </div>
     </div>
   );
 };
