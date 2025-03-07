@@ -1,7 +1,7 @@
 import { cn, Select, SelectItem } from "@heroui/react";
 
 interface selectOptionsType{
-  key?:number;
+  id?:number;
   label?:string;
 }
 interface SelectInputProps {
@@ -16,6 +16,7 @@ interface SelectInputProps {
   selectedKeys?:any;
   onSelectionChange?:any;
   isDisabled?:boolean;
+  trigger:string;
 }
 
 export const SelectInput = ({
@@ -29,6 +30,7 @@ export const SelectInput = ({
   listBoxClassName,
   selectedKeys,
   onSelectionChange,
+  trigger='',
   isDisabled=false,
 }: SelectInputProps) => {
   
@@ -47,12 +49,13 @@ export const SelectInput = ({
       onSelectionChange={onSelectionChange}
       classNames={{
         base: cn("bg-background border border-content2-1004",baseClassName),
-        trigger: "border-none",
+        trigger: cn("border-none",trigger),
+    
         listboxWrapper: cn("bg-background-900 rounded-[8px]",listBoxClassName),
       }}
     >
       {selectOptions.map((option) => (
-        <SelectItem key={option.key}>{option.label}</SelectItem>
+        <SelectItem key={option.id}>{option.label}</SelectItem>
       ))}
     </Select>
   );

@@ -54,3 +54,5 @@ export { PreviewQuestions } from './previewQuestions'
 export{TextAreaComp} from './textArea'
 
 export {PreviewModel} from './PreviewModel'
+
+export {  StudentFilter} from './StudentFilter'

@@ -29,9 +29,8 @@ const statusColorMap:any = {
 };
 
 
-export function TableSurvey({ visibleColumn, data, columns }:any) {
+export function TableSurvey({ visibleColumn, isSearch, setSelectedKeys,selectedKeys,createfunction=()=>{}, data, columns,isCreate=false }:any) {
     const [filterValue, setFilterValue] = React.useState("");
-    const [selectedKeys, setSelectedKeys] = React.useState(new Set([]));
     const [visibleColumns, setVisibleColumns] = React.useState(new Set(visibleColumn));
     const [statusFilter, setStatusFilter] = React.useState("all");
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -98,7 +97,7 @@ export function TableSurvey({ visibleColumn, data, columns }:any) {
                 return (
                     <User
                         avatarProps={{ radius: "full", src: user.avatar }}
-                        description={user.email}
+                        description={user.rollNo}
                         name={cellValue}
                         className="text-secondary-800 font-semibold"
                         classNames={{name: "text-black",
@@ -112,7 +111,14 @@ export function TableSurvey({ visibleColumn, data, columns }:any) {
                 return (
                     <div className="flex flex-col ">
                      
-                        <p className="text-bold text-tiny capitalize text-secondary-800 font-semibold">{user.team}</p>
+                        <div className="text-bold text-tiny capitalize text-secondary-800 font-semibold">{user.team}</div>
+                    </div>
+                );
+            case "Stay":
+                return (
+                    <div className="flex flex-col ">
+
+                        <div className="text-bold text-tiny capitalize text-secondary-800 font-semibold">{user.Stay}</div>
                     </div>
                 );
             case "status":
@@ -168,7 +174,7 @@ export function TableSurvey({ visibleColumn, data, columns }:any) {
     const topContent = React.useMemo(() => {
         return (
             <div className="flex flex-col gap-4">
-                <div className="flex justify-between gap-3 items-end">
+                {isSearch && <div className="flex justify-between gap-3 items-end">
                     <Input
                         isClearable
                         className="w-full sm:max-w-[44%]"
@@ -180,6 +186,7 @@ export function TableSurvey({ visibleColumn, data, columns }:any) {
                     />
                   
                 </div>
+    }
                
             </div>
         );
@@ -194,16 +201,16 @@ export function TableSurvey({ visibleColumn, data, columns }:any) {
     ]);
 
     const bottomContent = React.useMemo(() => {
-        return (
-            <div className="py-2 px-2 flex justify-center items-center  ">
+    return (
+            <div className="py-2 px-2 w-full flex justify-center items-center  ">
                 {/* <span className="w-[30%] text-small text-default-400">
                     {selectedKeys as any === "all"
                         ? "All items selected"
                         : `${selectedKeys.size} of ${filteredItems.length} selected`}
                 </span> */}
              
-              
-                <div className="flex w-full justify-between items-end gap-2">
+                <div className={cn("flex justify-between  items-center w-full gap-2", isCreate? "justify-end" : "")}>
+                {data.length>10 && <div className={cn("flex  justify-between items-center w-full gap-2",{isCreate:"w-[90%]"})}>
                     <ButtonComponent handleOnClick={onPreviousPage} baseClassName="border-secondary-700 gap-2 h-max p-2       w-max" buttonText="Previous" buttonIcon={<FaArrowLeft size={15}  className="text-secondary-800"/> }  textClassName="text-red-900 text-secondary-800"/>
                     <Pagination  page={page}
                         total={pages}
@@ -222,14 +229,14 @@ export function TableSurvey({ visibleColumn, data, columns }:any) {
                        
                     >
                         
-                        <p
+                        <div
                             className={cn(
                                 'text-[0.875rem] flex gap-2 font-source font-semibold ',
                                 "text-secondary-800", // Allow custom text styling
                             )}
                         >
                             Next <div className="rotate-2"><FaArrowRight  size={15} className="text-secondary-800" /></div>
-                        </p>
+                        </div>
                     </Button>
                   
                     {/* <label className="flex items-center text-default-400 text-small">
@@ -243,6 +250,9 @@ export function TableSurvey({ visibleColumn, data, columns }:any) {
                             <option value="15">15</option>
                         </select>
                     </label> */}
+                </div>}
+                {isCreate && <ButtonComponent handleOnClick={createfunction} baseClassName="border-secondary-700  items-center gap-2 h-max  bg-primary       w-max p-2 px-8 " buttonText="Create" isIcon={false} textClassName="!text-background font-regular " />
+    }
                 </div>
             </div>
         );
