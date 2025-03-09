@@ -1,13 +1,14 @@
 import { Checkbox, cn } from '@heroui/react'
 
 interface OptionsBoxProps {
+    index:number;
     options: {id:number,name:string}[]
     className?: string;
-    onCheckBoxSelected?:(val:{id:number,name:string}[])=>void;
+    onCheckBoxSelected?:(index:number ,val:{id:number,name:string}[])=>void;
     selectedOptions: {id:number,name:string}[];
 }
 
-export const OptionsBox = ({ options, className,onCheckBoxSelected = ()=>false ,selectedOptions = [] }: OptionsBoxProps) => {
+export const OptionsBox = ({ index,options, className,onCheckBoxSelected = ()=>false ,selectedOptions = [] }: OptionsBoxProps) => {
     
     const handleCheckBoxChange = (value: {id: number; name: string}) => {
         const isAlreadySelected = selectedOptions.some((item) => item.id === value.id);
@@ -15,7 +16,7 @@ export const OptionsBox = ({ options, className,onCheckBoxSelected = ()=>false ,
             ? selectedOptions.filter((item) => item.id !== value.id)
             : [...selectedOptions, value];
 
-        onCheckBoxSelected(updatedSelection);
+        onCheckBoxSelected(index,updatedSelection);
     };
     
 

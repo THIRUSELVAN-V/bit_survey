@@ -1,97 +1,110 @@
 import { InputField } from "../inputField";
 import { SelectInput } from "../selectInput";
 import { PreDefinedOptions } from "../preDefinedOptions";
-import {  useQuestionStore } from "../../store/useQuestionStore";
+import { useQuestionStore } from "../../store/useQuestionStore";
 import { CreateOptions } from "../createOptions";
 import { OptionsBox } from "../OptionsBox";
 import { ButtonComponent } from "../button";
 import { FiPlus } from "react-icons/fi";
 import React from "react";
-
-export const QuestionAndOptionsCreation = () => {
+interface QuestionAndOptionsCreationProps{
+  index:number
+}
+export const QuestionAndOptionsCreation = ({index}:QuestionAndOptionsCreationProps) => {
   const {
-    question,
-    setQuestion,
-    selectedQuestionType,
-    setSelectedQuestionType,
-    isPreDefinedOptions,
-    setIsPreDefinedOptions,
+    currentQuestions,
+    setCurrentQuestionField,
+    questions,
     scale,
     predefinedOptions,
     questionTypes,
     getPredefinedOptions,
     getQuestionTypes,
-    isScore,
-    setIsScore,
-    isOther,
-    setIsOther,
-    createQuestion
-    
+    // addQuestion,
+    submitAllQuestions,
+    fetchAllQuestions,
+    addNewQuestion,
   } = useQuestionStore();
+  console.log("hi", currentQuestions);
+  console.log("hhaa", questions);
 
-  
-  const selectedQType = Array.from(selectedQuestionType)[0];
-  console.log(selectedQType);
-
-
-  React.useEffect(()=>{
+  React.useEffect(() => {
     getPredefinedOptions();
-    getQuestionTypes()
-  },[])
-  const oo=[
-    {id:1,name:"Score this question (enable quiz mode)"},
-    {id:2,name:'Add an "Other" Answer Option '},
-  ]
-  const initialSelectedOptions = [];
-if (isScore) {
-    initialSelectedOptions.push({ id: 1, name: "Score this question (enable quiz mode)" });
-}
-if (isOther) {
-    initialSelectedOptions.push({ id: 2, name: 'Add an "Other" Answer Option ' });
-}
-
-  const onCheckBoxSelected = (val:{id:number,name:string}[])=>{
-    setIsScore(val.some(opt => opt.id === 1));
-    setIsOther(val.some(opt => opt.id === 2));
-  }
-  console.log("hi",isScore,isOther);
+    getQuestionTypes();
+    fetchAllQuestions();
+  }, []);
+  console.log(currentQuestions);
   
+  const oo = [
+    { id: 1, name: "Score this question (enable quiz mode)" },
+    { id: 2, name: 'Add an "Other" Answer Option ' },
+  ];
+
+  const onCheckBoxSelected = (index:number ,val: { id: number; name: string }[]) => {
+    setCurrentQuestionField(
+      index,
+      "isScore",
+      val.some((opt) => opt.id === 1)
+    );
+    setCurrentQuestionField(
+      index,
+      "isOther",
+      val.some((opt) => opt.id === 2)
+    );
+  };
+
   return (
     <div>
       <div className="bg-content2-1003 pt-2">
         <div className="py-6 px-5 flex gap-6 items-center ">
-          <p className="font-semibold text-xs text-background-foreground">Q1</p>
+          <p className="font-semibold text-xs text-background-foreground">
+            Q{currentQuestions[index].index + 1}
+          </p>
           <InputField
             placeholder="Enter the question"
-            inputValue={question}
-            onValueChange={setQuestion}
+            inputValue={currentQuestions[index].question}
+            onValueChange={(value) =>
+              setCurrentQuestionField(index,"question", value)
+            }
           />
           <SelectInput
             selectOptions={questionTypes}
             placeholder="Select Question Type"
-            selectedKeys={selectedQuestionType}
-            onSelectionChange={setSelectedQuestionType}
+            selectedKeys={new Set([currentQuestions[index].questionTypeId])}
+            onSelectionChange={(value: any) =>
+              setCurrentQuestionField(index,"questionTypeId", Array.from(value)[0])
+            }
           />
         </div>
         <div className="py-4 px-5 border-y border-content2-1004">
           <PreDefinedOptions
-            isSelected={isPreDefinedOptions}
-            setIsSelected={setIsPreDefinedOptions}
+            index={index}
+            isSelected={currentQuestions[index].isPreDefinedOptions}
+            setIsSelected={(value) =>
+              setCurrentQuestionField(index,"isPreDefinedOptions", value)
+            }
             scale={scale}
             predefinedOptions={predefinedOptions}
           />
         </div>
         <div className="px-9 py-7 ">
-          <CreateOptions />
+          <CreateOptions 
+            index={index}
+           />
         </div>
         <div>
           <OptionsBox
+            index={index}
             options={oo}
             onCheckBoxSelected={onCheckBoxSelected}
             selectedOptions={[
-              ...(isScore ? [{ id: 1, name: "Score this question (enable quiz mode)" }] : []),
-              ...(isOther ? [{ id: 2, name: 'Add an "Other" Answer Option ' }] : [])
-          ]}
+              ...(currentQuestions[index].isScore
+                ? [{ id: 1, name: "Score this question (enable quiz mode)" }]
+                : []),
+              ...(currentQuestions[index].isOther
+                ? [{ id: 2, name: 'Add an "Other" Answer Option ' }]
+                : []),
+            ]}
           />
         </div>
       </div>
@@ -102,7 +115,7 @@ if (isOther) {
           buttonText="Next question"
           textClassName="text-background text-base"
           baseClassName="border-none rounded-[4px]"
-          handleOnClick={()=>createQuestion()}
+          handleOnClick={() => submitAllQuestions()}
         />
         <div className="flex gap-5">
           <ButtonComponent
@@ -118,6 +131,7 @@ if (isOther) {
             buttonText="Finish survey"
             textClassName="text-background text-base"
             baseClassName="border-none rounded-[4px]"
+            handleOnClick={() => addNewQuestion()}
           />
         </div>
       </div>

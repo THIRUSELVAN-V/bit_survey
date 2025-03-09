@@ -1,11 +1,13 @@
 import React from "react";
 import { TabBar } from "../switchTab";
 import { QuestionAndOptionsCreation } from "../questionAndOptionsCreation";
-
-export const CreateQuestion = () => {
+interface CreateQuestionProps{
+  index:number;
+}
+export const CreateQuestion = ({index}:CreateQuestionProps) => {
   const [activeTab, setActiveTab] = React.useState("tab1");
   const tabs = [
-    { id: "tab1", label: "EDIT", content: <div className=""><QuestionAndOptionsCreation/></div> },
+    { id: "tab1", label: "EDIT", content: <div className=""><QuestionAndOptionsCreation index={index}/></div> },
     { id: "tab2", label: "OPTIONS", content: <div> hi</div> },
   ];
   return (
