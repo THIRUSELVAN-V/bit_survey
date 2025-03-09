@@ -60,4 +60,3 @@ export {PreviewModel} from './PreviewModel'
 
 export {BulkAnswers} from './bulkAnswers'
 
-export {LoginComp} from './login'
