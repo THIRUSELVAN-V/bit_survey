@@ -8,17 +8,20 @@ import { MdContentCopy } from 'react-icons/md';
 interface QuestionDisplayProps {
     id: number;
     question: string;
-    options: string[];
+    options: {option:{name:string}}[];
     questionType: 'single-choice' | 'multi-choice' | 'matrix-type';
-    index: number
+    index: number;
+    onDelete?: (questionId:number)=>void;
 }
 
-export const QuestionDisplay: React.FC<QuestionDisplayProps> = ({
+export const QuestionDisplay= ({
+    id,
     question,
     options,
     questionType,
-    index
-}) => {
+    index,
+    onDelete = () => false
+}:QuestionDisplayProps) => {
     const [singleSelected, setSingleSelected] = React.useState('');
     const [multiSelected, setMultiSelected] = React.useState<string[]>([]);
 
@@ -26,11 +29,10 @@ export const QuestionDisplay: React.FC<QuestionDisplayProps> = ({
 
 
     return (
-        <div className="bg-background min-h-full rounded-md p-4 flex flex-col">
-            <div className="bg-[#F4F5F5] p-4 rounded-md">
+            <div className="bg-content2-1003 p-7 rounded-md">
                 {questionType === 'single-choice' && (
-                    <div>
-                        <p className="font-semibold text-[0.875rem] py-3 text-content2-100">
+                    <div className='flex flex-col gap-7'>
+                        <p className="font-medium text-[18px]  text-content2-1005">
                             {index + 1}. {question}
                         </p>
                         <RadioGroup
@@ -38,17 +40,19 @@ export const QuestionDisplay: React.FC<QuestionDisplayProps> = ({
                             value={singleSelected}
                             onValueChange={setSingleSelected}
                         >
+                            <div className='flex flex-col gap-5'>
                             {options.map((option, index) => (
-                                <Radio key={index} value={option}>
-                                    {option}
+                                <Radio key={index} value={option.option.name} >
+                                    <p className='font-medium text-[17px] text-secondary-400'>{option.option.name}</p>
                                 </Radio>
                             ))}
+                            </div>
                         </RadioGroup>
                     </div>
                 )}
                 {questionType === 'multi-choice' && (
-                    <div>
-                        <p className="font-semibold text-[0.875rem] py-3 text-content2-100">
+                    <div className='flex flex-col gap-7'>
+                        <p className="font-medium text-[18px]  text-content2-1005">
                         {index + 1}. {question}
                         </p>
                         <CheckboxGroup
@@ -57,11 +61,13 @@ export const QuestionDisplay: React.FC<QuestionDisplayProps> = ({
                             value={multiSelected}
                             onValueChange={setMultiSelected}
                         >
+                            <div className='flex flex-col gap-5'>
                             {options.map((option, index) => (
-                                <Checkbox key={index} value={option}>
-                                    {option}
+                                <Checkbox key={index} value={option.option.name}>
+                                    <p className='font-medium text-[17px] text-secondary-400'>{option.option.name}</p>
                                 </Checkbox>
                             ))}
+                            </div>
                         </CheckboxGroup>
                     </div>
                 )}
@@ -72,8 +78,8 @@ export const QuestionDisplay: React.FC<QuestionDisplayProps> = ({
                       buttonIcon={<BiEditAlt size={18} color='white'/>}
                       isIcon={true}
                       bgColor="bg-primary"
-                      textClassName="text-background font-regular text-[14px]"
-                      baseClassName="border-none w-fit h-fit py-1"
+                      textClassName="text-background font-medium text-[14px]"
+                      baseClassName="border-none w-fit h-fit py-2 px-4 "
                     //   handleOnClick={onButtonClick}
                     />
                     <ButtonComponent
@@ -82,9 +88,9 @@ export const QuestionDisplay: React.FC<QuestionDisplayProps> = ({
                     buttonIcon={<RiDeleteBin6Line  size={18} color='white'/>}
                     isIcon={true}
                     bgColor="bg-primary"
-                    textClassName="text-background font-regular text-[14px]"
-                    baseClassName="border-none w-fit h-fit py-1"
-                  //   handleOnClick={onButtonClick}
+                    textClassName="text-background font-medium text-[14px]"
+                    baseClassName="border-none w-fit h-fit py-2 px-4"
+                    handleOnClick={()=>onDelete(id)}
                   />
                     <ButtonComponent
                     ButtonVariant="solid"
@@ -92,12 +98,11 @@ export const QuestionDisplay: React.FC<QuestionDisplayProps> = ({
                     buttonIcon={<MdContentCopy size={18} color='white'/>}
                     isIcon={true}
                     bgColor="bg-primary"
-                    textClassName="text-background font-regular text-[14px] "
-                    baseClassName="border-none w-fit h-fit py-1"
+                    textClassName="text-background font-medium text-[14px] "
+                    baseClassName="border-none w-fit h-fit py-2 px-4"
                   //   handleOnClick={onButtonClick}
                   />
                 </div>
             </div>
-        </div>
     );
 };

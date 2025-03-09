@@ -4,57 +4,137 @@ import { PreDefinedOptions } from "../preDefinedOptions";
 import { useQuestionStore } from "../../store/useQuestionStore";
 import { CreateOptions } from "../createOptions";
 import { OptionsBox } from "../OptionsBox";
-
-export const QuestionAndOptionsCreation = () => {
+import { ButtonComponent } from "../button";
+import { FiPlus } from "react-icons/fi";
+import React from "react";
+interface QuestionAndOptionsCreationProps{
+  index:number
+}
+export const QuestionAndOptionsCreation = ({index}:QuestionAndOptionsCreationProps) => {
   const {
-    question,
-    setQuestion,
-    selectedQuestionType,
-    setSelectedQuestionType,
-    isPreDefinedOptions,
-    setIsPreDefinedOptions,
+    currentQuestions,
+    setCurrentQuestionField,
+    questions,
     scale,
     predefinedOptions,
     questionTypes,
+    getPredefinedOptions,
+    getQuestionTypes,
+    // addQuestion,
+    submitAllQuestions,
+    fetchAllQuestions,
+    addNewQuestion,
   } = useQuestionStore();
+  console.log("hi", currentQuestions);
+  console.log("hhaa", questions);
+
+  React.useEffect(() => {
+    getPredefinedOptions();
+    getQuestionTypes();
+    fetchAllQuestions();
+  }, []);
+  console.log(currentQuestions);
   
-  const selectedQType = Array.from(selectedQuestionType)[0];
-  console.log(selectedQType);
+  const oo = [
+    { id: 1, name: "Score this question (enable quiz mode)" },
+    { id: 2, name: 'Add an "Other" Answer Option ' },
+  ];
+
+  const onCheckBoxSelected = (index:number ,val: { id: number; name: string }[]) => {
+    setCurrentQuestionField(
+      index,
+      "isScore",
+      val.some((opt) => opt.id === 1)
+    );
+    setCurrentQuestionField(
+      index,
+      "isOther",
+      val.some((opt) => opt.id === 2)
+    );
+  };
+
   return (
     <div>
       <div className="bg-content2-1003 pt-2">
         <div className="py-6 px-5 flex gap-6 items-center ">
-          <p className="font-semibold text-xs text-background-foreground">Q1</p>
+          <p className="font-semibold text-xs text-background-foreground">
+            Q{currentQuestions[index].index + 1}
+          </p>
           <InputField
             placeholder="Enter the question"
-            inputValue={question}
-            onValueChange={setQuestion}
+            inputValue={currentQuestions[index].question}
+            onValueChange={(value) =>
+              setCurrentQuestionField(index,"question", value)
+            }
           />
           <SelectInput
             selectOptions={questionTypes}
             placeholder="Select Question Type"
-            selectedKeys={selectedQuestionType}
-            onSelectionChange={setSelectedQuestionType}
+            selectedKeys={new Set([currentQuestions[index].questionTypeId])}
+            onSelectionChange={(value: any) =>
+              setCurrentQuestionField(index,"questionTypeId", Array.from(value)[0])
+            }
           />
         </div>
         <div className="py-4 px-5 border-y border-content2-1004">
           <PreDefinedOptions
-            isSelected={isPreDefinedOptions}
-            setIsSelected={setIsPreDefinedOptions}
+            index={index}
+            isSelected={currentQuestions[index].isPreDefinedOptions}
+            setIsSelected={(value) =>
+              setCurrentQuestionField(index,"isPreDefinedOptions", value)
+            }
             scale={scale}
             predefinedOptions={predefinedOptions}
           />
         </div>
         <div className="px-9 py-7 ">
-          <CreateOptions/>
+          <CreateOptions 
+            index={index}
+           />
         </div>
         <div>
           <OptionsBox
-            options={["Score this question (enable quiz mode)",'Add an "Other" Answer Option ']}
+            index={index}
+            options={oo}
+            onCheckBoxSelected={onCheckBoxSelected}
+            selectedOptions={[
+              ...(currentQuestions[index].isScore
+                ? [{ id: 1, name: "Score this question (enable quiz mode)" }]
+                : []),
+              ...(currentQuestions[index].isOther
+                ? [{ id: 2, name: 'Add an "Other" Answer Option ' }]
+                : []),
+            ]}
           />
         </div>
       </div>
-      questionAndOptionsCreation
+      <div className="px-5 pt-4 flex justify-between">
+        <ButtonComponent
+          bgColor="bg-primary"
+          buttonIcon={<FiPlus size={24} className="text-background " />}
+          buttonText="Next question"
+          textClassName="text-background text-base"
+          baseClassName="border-none rounded-[4px]"
+          handleOnClick={() => submitAllQuestions()}
+        />
+        <div className="flex gap-5">
+          <ButtonComponent
+            isIcon={false}
+            ButtonVariant="bordered"
+            buttonText="Cancel"
+            textClassName="text-content1-1007  text-base"
+            baseClassName="  rounded-[4px] w-fit px-6"
+          />
+          <ButtonComponent
+            bgColor="bg-primary"
+            isIcon={false}
+            buttonText="Finish survey"
+            textClassName="text-background text-base"
+            baseClassName="border-none rounded-[4px]"
+            handleOnClick={() => addNewQuestion()}
+          />
+        </div>
+      </div>
     </div>
   );
 };
