@@ -16,7 +16,7 @@ interface SelectInputProps {
   selectedKeys?:any;
   onSelectionChange?:any;
   isDisabled?:boolean;
-  trigger:string;
+  trigger?:string;
 }
 
 export const SelectInput = ({
