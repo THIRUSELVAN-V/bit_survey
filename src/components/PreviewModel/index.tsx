@@ -7,47 +7,51 @@ type Questions = {
     id: number;
     question: string;
     options: string[];
-}
+};
 
 export const PreviewModel = () => {
     const [textAreaInput, setTextAreaInput] = React.useState<string>('');
     const [previewData, setPreviewData] = React.useState<Questions[]>([]);
 
-    const handleTextAreaChange = (value:string) => {
+    const handleTextAreaChange = (value: string) => {
         setTextAreaInput(value);
+
+        // Check if the input ends with two newline characters
+        if (value.endsWith('\n\n')) {
+            const parsedQuestions = parseQuestions(value);
+            if (parsedQuestions.length > 0) {
+                setPreviewData((prev) => [...prev, ...parsedQuestions]);
+                setTextAreaInput(''); // Clear the textarea after adding questions
+            }
+        }
     };
 
-    const parseQuestions = (input:string):Questions[] => {
-        const questions:Questions[] = [];
+    const parseQuestions = (input: string): Questions[] => {
+        const questions: Questions[] = [];
         const blocks = input.split('\n\n');
 
         blocks.forEach((block, index) => {
             const lines = block.split('\n').filter((line) => line.trim() !== '');
 
             if (lines.length > 0) {
-
-                   const question = lines[0]
-                   if(question){
+                const question = lines[0];
+                if (question) {
                     const options = lines.slice(1);
-                    questions.push({ 
+                    questions.push({
                         id: previewData.length + index + 1,
-                        question: question, 
+                        question: question,
                         options: options,
                     });
-                   }              
+                }
             }
         });
 
         return questions;
-
-    }
+    };
 
     const handleAddQuestions = () => {
-        const parsedQuestions = parseQuestions(textAreaInput);
-        setPreviewData((prev) => [...prev, ...parsedQuestions]);
-        console.log(parsedQuestions);
-
-    }
+        console.log('Preview Data:', previewData); // Log all preview data to the console
+    };
 
     return (
         <div className='flex flex-row h-[595px] rounded-lg border-2'>
@@ -72,8 +76,9 @@ Circle
 Triangle
 Square
 Hexagon'
-            value={textAreaInput}
-            onChange={handleTextAreaChange}    />
+                    value={textAreaInput}
+                    onChange={handleTextAreaChange}
+                />
             </div>
 
             {/* Right Section */}
@@ -82,8 +87,7 @@ Hexagon'
                 <div className='px-4 py-2'>
                     <p className='font-medium text-[#777777] pt-2 pb-3'>Preview</p>
                 </div>
-                <div className='px-4  flex-1 overflow-y-auto scrollbar-hide'>
-
+                <div className='px-4 flex-1 overflow-y-auto scrollbar-hide'>
                     <div>
                         {previewData.map((previewQuestion) => (
                             <PreviewQuestions
