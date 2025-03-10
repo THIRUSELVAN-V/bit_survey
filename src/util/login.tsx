@@ -8,6 +8,7 @@ export function useLogin() {
         try {
             const loginResult = await Login();
             localStorage.setItem('access_token', loginResult.token)
+            window.location.href = '/';
 
             return true;
         } catch (error) {

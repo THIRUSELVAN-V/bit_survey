@@ -51,9 +51,7 @@ export const SideBar = () => {
 
       {/* Sidebar */}
       <div
-        className={`fixed lg:relative h-screen bg-background border-r border-content1-600 transform transition-transform duration-300 ease-in-out ${
-          isSidebarOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
-        } lg:translate-x-0 w-64 z-40`}
+        className='flex flex-col h-screen bg-background border-r border-content1-600'
       >
         {/* Header */}
         <div className="flex items-center gap-2 pl-12 pt-8 mb-10">
