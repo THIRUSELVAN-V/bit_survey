@@ -19,6 +19,7 @@ interface RollStore {
     filteredRole: Skill[];
     requestState: IDefaultRequestState;
     getRolefromBackend: () => Promise<void>;
+    removeSelectedRole: (skillName: string, level?: string) => void;
     selectRoleWithLevel: (skillName: string, level?: string) => void;
 }
 
@@ -53,29 +54,74 @@ interface SkillStore {
 
 interface GroupStore {
     minRp: number;
+    groupStudent: any;
     maxRp: number | null;
     getMaxRp: (num: number) => void;
     getMinRp: (num: number) => void;
     requestState: IDefaultRequestState;
     getGroupStudent: () => Promise<void>;
+    CreateGroup: () => Promise<void>;
+    setGroupStudents: (data: any) => Promise<void>;
+    selectedStudent: any;
+    openGroupStudentpopup: boolean;
+    toogleGroupStudentpopup: () => void;
 }
 
 export const useGroupStore = create<GroupStore>((set, get) => ({
     minRp: 0,
     maxRp: 0,
-    groupStudent:[],
+    groupStudent: [],
+    selectedStudent: [],
+    openGroupStudentpopup: false,
     requestState: DEFAULT_REQUEST_STATE,
+    toogleGroupStudentpopup: () => {
+        set({ openGroupStudentpopup: !get().openGroupStudentpopup });
+    },
+
     getMaxRp: (num: number) => {
         set({ maxRp: num });
     },
     getMinRp: (num: number) => {
         set({ minRp: num });
     },
+    setGroupStudents: async (data) => {
+
+        set({ selectedStudent: data })
+
+    },
+    CreateGroup: async () => {
+        set({ requestState: DEFAULT_REQUEST_LOADING });
+        const { minRp, maxRp, selectedStudent } = get();
+        const { selectedSkills } = useSkillStore.getState();
+        const { filteredRole } = useRoleStore.getState();
+
+        try {
+            const response: any = await postRequest('api/group/create', {
+                "role": filteredRole,
+                "name": "Group 1",
+                "skills": selectedSkills,
+                "maxRp": maxRp,
+                "minRp": minRp,
+                "students": selectedStudent,
+            });
+            console.log(response);
+
+        } catch (error) {
+            const errorState = {
+                ...DEFAULT_REQUEST_ERROR,
+                message: error instanceof Error ? error.message : 'An unknown error occurred',
+                status: error instanceof Error && 'response' in error ? (error as any).response?.status || 0 : 0
+            };
+
+            set({ requestState: errorState });
+        }
+    },
     getGroupStudent: async () => {
         set({ requestState: DEFAULT_REQUEST_LOADING });
         const { minRp, maxRp } = get();
         const { selectedSkills } = useSkillStore.getState();
         const { filteredRole } = useRoleStore.getState();
+
 
         try {
             const response: any = await postRequest('api/group/group/student', {
@@ -84,7 +130,8 @@ export const useGroupStore = create<GroupStore>((set, get) => ({
                 "maxRp": maxRp,
                 "minRp": minRp
             });
-            console.log(response);
+
+            set({ groupStudent: response.data });
         } catch (error) {
             const errorState = {
                 ...DEFAULT_REQUEST_ERROR,
@@ -191,6 +238,15 @@ export const useRoleStore = create<RollStore>((set, get) => ({
                 filteredRole: [...filteredRole, skillName.id]
             });
         }
+    },
+    removeSelectedRole: (level?: any) => {
+        const { filteredRole } = get();
+        console.log(level)
+        const updatedSelectedSkills = filteredRole.filter(
+            skill => !(skill === level)
+        );
+
+        set({ filteredRole: updatedSelectedSkills });
     },
 
     resetRole: () => {

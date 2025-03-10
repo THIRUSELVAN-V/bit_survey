@@ -5,19 +5,21 @@ import { useQuestionStore } from "../../store/useQuestionStore";
 interface PreDefinedOptionsProps{
     isSelected?:boolean;
     setIsSelected?: (val:boolean)=>void;
-    scale:{key:number,label:string}[];
-    predefinedOptions:{key:number,label:string}[];
+    scale:{id:number,label:string}[];
+    predefinedOptions:{id:number,label:string}[];
+    index:number;
 }
 
 export const PreDefinedOptions = ({
     isSelected=false,
     setIsSelected= () =>false,
     scale,
-    predefinedOptions
+    predefinedOptions,
+    index,
 }:PreDefinedOptionsProps) => {
     const {
-        selectedScale,
-        setSelectedScale,
+        currentQuestions,
+        setCurrentQuestionField,
     } = useQuestionStore()
   
   return (
@@ -28,8 +30,10 @@ export const PreDefinedOptions = ({
         <SelectInput
           selectOptions={scale}
           isDisabled={!isSelected}
-          selectedKeys={selectedScale}
-          onSelectionChange={setSelectedScale}
+          selectedKeys={new Set([currentQuestions[index].scaleId])}
+  onSelectionChange={(value:any) =>
+    setCurrentQuestionField(index,"scaleId", Array.from(value)[0])
+  }
           placeholder=""
           size="sm"
           baseClassName="w-[5rem] rounded-[3px]"
@@ -37,6 +41,10 @@ export const PreDefinedOptions = ({
         <SelectInput 
             selectOptions={predefinedOptions} 
             isDisabled={!isSelected}
+            selectedKeys={new Set([currentQuestions[index].preDefinedOptionsId])}
+  onSelectionChange={(value:any) =>
+    setCurrentQuestionField(index,"preDefinedOptionsId", Array.from(value)[0])
+  }
             size="sm" 
             baseClassName="w-[13rem] rounded-[3px]"
         />

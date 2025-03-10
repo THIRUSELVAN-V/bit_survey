@@ -48,7 +48,7 @@ module.exports = {
         'light-xl': '0px 10px 24px rgba(0, 0, 0, 0.25)', // Extra large shadow
         'gradient-shadow':
           '0 4px 6px 0 rgba(255, 255, 255, 0.00), 0 6px 10px 2px rgba(255, 255, 255, 0.44)',
-        'light-xll': '0px 20px 24px -4px #15151514', // Extra large shadow
+        'light-xll': '0px 0px 16px 0px #7090B01F;', // Extra large shadow
         'light-xlll': '2px 2px 16px 0px rgba(0, 0, 0, 0.20)',
         'light-xxl': '0px 1px 2px 0px rgba(21, 21, 21, 0.08), 0px 2px 4px 0px rgba(21, 21, 21, 0.08)',
       },
@@ -107,6 +107,9 @@ module.exports = {
             '600': '#4A4A4A',
             '700':"#D5D7DA",
              '800':"#546773",//used
+             '900':"#1565C0",
+             '1000':'#e8f0f9',
+             '1001':'#414651'
           },
           success: {
             DEFAULT: '#1FC16B',
@@ -202,6 +205,7 @@ module.exports = {
             '1002': '#A4A4A4', //used
             '1003': '#F4F5F5', //used
             '1004': '#D0D2D3', //used
+            '1005': '#525252', //used
             
           },
         },

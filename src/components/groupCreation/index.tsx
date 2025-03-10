@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { ButtonComponent, Chip, IconButtonComponent, IconButtonWithText, Modals, NoGroupCreationCard, TableSurvey, } from '..';
+import { ButtonComponent, Chip, IconButtonComponent, IconButtonWithText, Modals, NoGroupCreationCard, StudentFilter, TableSurvey, } from '..';
 import { IoMdCloseCircleOutline } from 'react-icons/io';
 import { Divider, NumberInput } from '@heroui/react';
 import { MdOutlineWorkOutline } from 'react-icons/md';
@@ -48,10 +48,10 @@ export const GroupCreation = ({
     const [error, setError] = React.useState<string>("");
     const handleSetConditionClick = () => setGroupCreation(true);
     const role=useRoleStore((state)=>state.initialRole)
-    const { getRolefromBackend,resetRole, selectRoleWithLevel, filteredRole } = useRoleStore((state) => state)
+    const { getRolefromBackend, resetRole, selectRoleWithLevel, removeSelectedRole, filteredRole } = useRoleStore((state) => state)
     const skill = useSkillStore((state) => state.initial_skill)
     const { getSkillfromBackend, resetSkill,selectSkillWithLevel, removeSelectedSkill,selectedSkills } = useSkillStore((state) => state)
-    const { getGroupStudent, minRp, maxRp, getMaxRp, getMinRp } = useGroupStore((state)=>state)
+    const { getGroupStudent, minRp, maxRp, groupStudent, getMaxRp, getMinRp, openGroupStudentpopup, toogleGroupStudentpopup } = useGroupStore((state)=>state)
     // const filteredSkill=useSkillStore((state) => state.filteredSkill)
     // const filteredRole = useRoleStore((state) => state.filteredRole)
     useEffect(()=>{
@@ -88,16 +88,13 @@ export const GroupCreation = ({
                 prev.some((pre: any) => pre.name === specification?.name) ? prev : [...prev, newGroup]
             );
         }
-        // setFilterGroup((prev: any) => (prev.includes((pre: any) => pre.name) ? prev : [...prev, temp]));
-       
-   
     };
-    const [openGroupStudentpopup, setOpenGroupStudentpopup] =
-        React.useState(false);
+    // const [openGroupStudentpopup, setOpenGroupStudentpopup] =
+    //     React.useState(false);
 
    
     const handleCloseGroupStudentpopup = () => {
-        setOpenGroupStudentpopup(false);
+        toogleGroupStudentpopup();
     };
     useEffect(()=>{
         console.log(selectedSkills)
@@ -105,14 +102,21 @@ export const GroupCreation = ({
     }, [selectedSkills, filteredRole])
     const handleRemoveFilterGroup = (group: any) => {
         console.log(group)
-        removeSelectedSkill(group.skillId)
+        if(group.skillId)
+        {
+
+            removeSelectedSkill(group.skillId)
+        }
+        else{
+            removeSelectedRole(group.id)
+        }
         setFilterGroup((prev:any) => prev.filter((item:any) => item !== group));
     };
     const handleSubmit = () => {
 
         getGroupStudent()
         handleGroupCreationSubmit()
-        setOpenGroupStudentpopup(true)
+        toogleGroupStudentpopup()
     };
     const handleClose = () => {
         setGroupCreation(false);
@@ -330,16 +334,15 @@ export const GroupCreation = ({
                                 isIcon={false}
                                 bgColor="bg-primary"
                                 textClassName="text-background font-semibold text-[1rem]"
-                                baseClassName="border-none w-full sm:w-[200px]"
+                                baseClassName="border-none w-full sm:w-[200px] bg-primary hover:!bg-primary data-[hover=true]:!bg-primary"
                                 handleOnClick={handleSubmit}
                             />
                         </div>
                     </div>
                      <Modals
+                        
                             ModalContents={
-                              <div className="h-full  ">
-                                <TableSurvey visibleColumn={["name", "role", "email"]} data={users} columns={columns}/>
-                              </div>
+                            <StudentFilter handleCloseGroupStudentpopup={handleCloseGroupStudentpopup} filterGroup={filterGroup} data={groupStudent}/>
                             }
                             // ModalFooterContent={<div></div>}
                         isopen={openGroupStudentpopup}

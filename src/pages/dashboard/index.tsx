@@ -195,7 +195,7 @@ export const Dashboard = () => {
       />
       <Modals
         ModalContents={
-          <div className="h-full  ">
+          <div className="h-full">
             <GroupCreation
               filterGroup={filterGroup}
               onClose={handleCloseGroupCreationpopup}

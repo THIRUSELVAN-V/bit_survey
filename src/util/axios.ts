@@ -3,7 +3,7 @@ import axios, { AxiosResponse, InternalAxiosRequestConfig } from "axios";
 
 // Create an Axios instance
 const axiosClient = axios.create({
-    baseURL: import.meta.env.VITE_BACKEND_URL, // Replace with your API URL
+    baseURL: import.meta.env.VITE_BACKEND_URL || 'https://bitsurveybackend.vercel.app/', // Replace with your API URL
     headers: {
         "Content-Type": "application/json",
     },
