@@ -103,7 +103,7 @@ Hexagon'
 
 {/* <BulkAnswers/> */}
 
-<LoginComp/>
+{/* <LoginComp/> */}
 
     </div>
   )

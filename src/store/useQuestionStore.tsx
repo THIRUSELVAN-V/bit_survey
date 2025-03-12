@@ -25,7 +25,7 @@ interface QuestionStore {
   currentQuestions: Question[]; 
   setCurrentQuestionField: (index:number,field: keyof Question, value: any) => void;
   // addQuestion: () => Promise<void>;
-  fetchAllQuestions: () => Promise<void>;
+  fetchAllQuestions: (surveyId:number) => Promise<void>;
   deleteOuestion: (surveyId:number,questionId:number) => Promise<void>;
 
 
@@ -43,6 +43,7 @@ interface QuestionStore {
 
   getPredefinedOptions: () => Promise<void>
   getQuestionTypes: () => Promise<void>
+  createSurvey: (name:string) => Promise<void>
 
 }
 
@@ -98,11 +99,11 @@ export const useQuestionStore = create<QuestionStore>((set,get) => ({
   },
   
   submitAllQuestions: async () => {
-    const { currentQuestions, fetchAllQuestions } = get();
+    const { currentQuestions, fetchAllQuestions,survey } = get();
 
     const questionPayloads = currentQuestions.map((question) => ({
       questionTypeId: Number(question.questionTypeId),
-      surveyId: 1,
+      surveyId: survey.id,
       question: question.question,
       optionTypeId: 1,
       isOther: question.isOther,
@@ -121,7 +122,7 @@ export const useQuestionStore = create<QuestionStore>((set,get) => ({
       console.log("All questions added successfully!");
 
       // Fetch all questions again after adding
-      fetchAllQuestions();
+      fetchAllQuestions(survey?.id);
 
       // Reset state after submission
       set({ currentQuestions: [
@@ -199,9 +200,10 @@ export const useQuestionStore = create<QuestionStore>((set,get) => ({
   //     console.error("Error adding question:", err);
   //   }
   // },
-  fetchAllQuestions: async () => {
+  fetchAllQuestions: async (surveyId) => {
+    const url= `api/survey/get/${surveyId}`
     try {
-      const response:any = await getRequest("api/survey/get/1");
+      const response:any = await getRequest(url);
       set({ questions: response.data.surveyQuestions || [] as any});
       set({survey:response.data})
       console.log("srr",response.data);
@@ -211,17 +213,28 @@ export const useQuestionStore = create<QuestionStore>((set,get) => ({
     }
   },
   deleteOuestion: async (surveyId,questionId) => {
-    const {fetchAllQuestions} = get()
+    const {fetchAllQuestions,survey} = get()
     try{
       const response = await postRequest("/api/survey/deletequestion",{surveyId:surveyId,questionId:questionId})
       console.log(response);
-      fetchAllQuestions()
+      fetchAllQuestions(survey?.id)
       
     }catch(err){
       console.log(err);
       
     }
 
+  },
+  createSurvey: async (name)=>{
+    const {fetchAllQuestions} = get()
+    try{
+      const response:any = await postRequest("/api/survey/create",{name:name})
+      fetchAllQuestions(response.data.id)
+      
+    }catch(err){
+      console.log(err);
+      
+    }
   },
 
   requestState: DEFAULT_REQUEST_STATE,
