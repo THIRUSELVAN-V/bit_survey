@@ -1,9 +1,14 @@
 import React from "react";
 import { Chip } from "../chip"; // Adjust the import path as needed
 import { ButtonComponent } from "../button"; // Adjust the import path as needed
-import { Avatar, AvatarGroup, Progress } from "@heroui/react"; // Assuming Heroui provides an Avatar component
+import { Avatar, AvatarGroup, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Progress } from "@heroui/react"; // Assuming Heroui provides an Avatar component
 import { BsThreeDotsVertical } from "react-icons/bs"; // Import the three-dot icon
 import { HiOutlinePlusSm } from "react-icons/hi";
+import { DropdownComp } from "../dropDown";
+import { FiEdit2 } from "react-icons/fi";
+import { LiaShareAltSolid } from "react-icons/lia";
+import { AiOutlineDelete } from "react-icons/ai";
+import { IoSettingsOutline } from "react-icons/io5";
 
 interface SurveyCardProps {
   date?: string;
@@ -24,6 +29,14 @@ interface SurveyCardProps {
   totalResponse?: number;
   totalMembers?: number;
 }
+
+const items = [
+  {key:'edit',label:'Edit', icon:<FiEdit2 />},
+  {key:'share',label:'Share', icon:<LiaShareAltSolid />},
+  {key:'delete',label:'Delete', icon:<AiOutlineDelete />},
+  {key:'permissions',label:'Permissions', icon:<IoSettingsOutline  />},
+]
+
 
 export const SurveyCard: React.FC<SurveyCardProps> = ({
   date,
@@ -60,10 +73,29 @@ export const SurveyCard: React.FC<SurveyCardProps> = ({
         )}
 
         {/* Three-Dot Icon (always rendered at the right end) */}
+        <Dropdown
+    placement='right-start'
+    className='min-w-fit w-fit bg-white border'>
+      <DropdownTrigger>
         <BsThreeDotsVertical
-          size={18}
-          className=" text-content2-800 cursor-pointer"
-        />
+                  size={18}
+                  className=" text-content2-800 cursor-pointer"
+                />
+      </DropdownTrigger>
+      <DropdownMenu aria-label="Dynamic Actions" items={items}
+      className='bg-white'>
+        {(item) => (
+          <DropdownItem
+            key={item.key}
+           className='font-bold hover:bg-primary-50'
+           classNames={{base:'hover:!bg-primary-50'}}
+            startContent={item.icon}
+          >
+            {item.label}
+          </DropdownItem>
+        )}
+      </DropdownMenu>
+    </Dropdown>
       </div>
 
       {/* Subtitle and Description */}

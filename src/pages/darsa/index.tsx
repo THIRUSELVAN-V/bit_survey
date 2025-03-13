@@ -1,5 +1,5 @@
 import React from "react";
-import { BulkAnswers, Chip, NumberInputComp, QuestionDisplay, SelectInput, SideBar, SurveyCard, SurveyOption, TableSurvey, TextAreaComp } from "../../components"
+import { BulkAnswers, Chip, DropdownComp, NumberInputComp, QuestionDisplay, SelectInput, SideBar, SurveyCard, SurveyOption, TableSurvey, TextAreaComp } from "../../components"
 import { TabBar } from "../../components/switchTab";
 import { PlusShield } from "../../assets/plusShield";
 import { PreviewModel } from "../../components/PreviewModel";
@@ -99,7 +99,9 @@ Square
 Hexagon'
 /> */}
 
-<PreviewModel/>
+{/* <PreviewModel/> */}
+
+{/* <DropdownComp/> */}
 
 {/* <BulkAnswers/> */}
 
