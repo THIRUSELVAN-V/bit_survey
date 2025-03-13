@@ -30,8 +30,8 @@ export const QuestionAndOptionsCreation = ({
     fetchAllQuestions,
     addNewQuestion,
   } = useQuestionStore();
-  console.log("hi", currentQuestions);
-  console.log("hhaa", questions);
+  console.log("hihihihihi", survey);
+  console.log("hhaa", currentQuestions);
 
   const [isBulkAnswerOpen,setIsBulkAnswerOpen] = React.useState(false)
 

@@ -24,6 +24,7 @@ interface QuestionStore {
   questions: any[];
   currentQuestions: Question[]; 
   setCurrentQuestionField: (index:number,field: keyof Question, value: any) => void;
+  setCurrentQuestionsFromPreview: (previewData:{id:number,question:string,options:{id:number,option:string}[]}[]) => void;
   // addQuestion: () => Promise<void>;
   fetchAllQuestions: (surveyId:number) => Promise<void>;
   deleteOuestion: (surveyId:number,questionId:number) => Promise<void>;
@@ -75,6 +76,24 @@ export const useQuestionStore = create<QuestionStore>((set,get) => ({
       ),
     }));
   },
+  setCurrentQuestionsFromPreview: (previewData) => {
+    set({
+      currentQuestions: previewData.map((question, index) => ({
+        index,
+        question: question.question,
+        questionTypeId: 1,
+        scaleId: null,
+        preDefinedOptionsId: null,
+        isPreDefinedOptions: false,
+        isScore: false,
+        isOther: false,
+        options: question.options.map((opt) => ({
+          id: opt.id,
+          option: opt.option,
+        })),
+      })),
+    });
+  },
   addNewQuestion: () => {
     set((state) => ({
       currentQuestions: [
@@ -112,13 +131,12 @@ export const useQuestionStore = create<QuestionStore>((set,get) => ({
       optionsType: "def",
       options: question.options.map((opt) => ({ name: opt.option })),
     }));
+    console.log("questionPayloads",questionPayloads);
 
     try {
-      await Promise.all(
-        questionPayloads.map((payload) =>
-          postRequest("api/survey/createquestion", payload)
-        )
-      );
+      for (const payload of questionPayloads) {
+        await postRequest("api/survey/createquestion", payload);
+    }
       console.log("All questions added successfully!");
 
       // Fetch all questions again after adding

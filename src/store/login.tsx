@@ -19,11 +19,17 @@ interface SkillStore {
     requestState: IDefaultRequestState;
     Login: any;
     logout: () => void;
+    setLoginData: (data: string) => void;
 }
 
 export const useLoginStore = create<SkillStore>((set, get) => ({
     LoginData: {
         email: "raj@gmail.com",
+    },
+    setLoginData: (data: string) => {
+        set({
+            LoginData: {email:data}
+        });
     },
     // Use the default request state from your types
     requestState: DEFAULT_REQUEST_STATE,
