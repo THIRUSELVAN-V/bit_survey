@@ -4,7 +4,6 @@ import { ButtonComponent } from "../button"; // Adjust the import path as needed
 import { Avatar, AvatarGroup, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Progress } from "@heroui/react"; // Assuming Heroui provides an Avatar component
 import { BsThreeDotsVertical } from "react-icons/bs"; // Import the three-dot icon
 import { HiOutlinePlusSm } from "react-icons/hi";
-import { DropdownComp } from "../dropDown";
 import { FiEdit2 } from "react-icons/fi";
 import { LiaShareAltSolid } from "react-icons/lia";
 import { AiOutlineDelete } from "react-icons/ai";
