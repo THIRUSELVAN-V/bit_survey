@@ -16,3 +16,4 @@ export {BagIcon} from "./bagIcon"
 export {RpIcon} from "./rpIcon"
 
 export {FeaturedTickIcon} from "./featuredTickIcon"
+export {PlusIcon} from "./plusIcon"

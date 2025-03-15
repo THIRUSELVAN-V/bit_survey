@@ -6,107 +6,120 @@ import { CreateOptions } from "../createOptions";
 import { OptionsBox } from "../OptionsBox";
 import { ButtonComponent } from "../button";
 import { FiPlus } from "react-icons/fi";
-import React from "react";
-interface QuestionAndOptionsCreationProps{
-  index:number
+import React, { useCallback, useMemo, useState } from "react";
+import { Modals } from "../modal";
+import { BulkAnswers } from "../bulkAnswers";
+interface QuestionAndOptionsCreationProps {
+  index: number;
 }
-export const QuestionAndOptionsCreation = ({index}:QuestionAndOptionsCreationProps) => {
+export const QuestionAndOptionsCreation = ({
+  index,
+}: QuestionAndOptionsCreationProps) => {
   const {
+    survey,
     currentQuestions,
     setCurrentQuestionField,
     questions,
     scale,
     predefinedOptions,
     questionTypes,
-    getPredefinedOptions,
-    getQuestionTypes,
     // addQuestion,
     submitAllQuestions,
-    fetchAllQuestions,
     addNewQuestion,
   } = useQuestionStore();
-  console.log("hi", currentQuestions);
-  console.log("hhaa", questions);
+  // console.log("hihihihihi", survey);
+  // console.log("hhaa", currentQuestions);
 
-  React.useEffect(() => {
-    getPredefinedOptions();
-    getQuestionTypes();
-    fetchAllQuestions();
-  }, []);
-  console.log(currentQuestions);
+  const [isBulkAnswerOpen,setIsBulkAnswerOpen] = useState(false)
+  const currentQuestion = currentQuestions[index];
   
-  const oo = [
-    { id: 1, name: "Score this question (enable quiz mode)" },
-    { id: 2, name: 'Add an "Other" Answer Option ' },
-  ];
+  // console.log(currentQuestions);
 
-  const onCheckBoxSelected = (index:number ,val: { id: number; name: string }[]) => {
-    setCurrentQuestionField(
-      index,
-      "isScore",
-      val.some((opt) => opt.id === 1)
-    );
-    setCurrentQuestionField(
-      index,
-      "isOther",
-      val.some((opt) => opt.id === 2)
-    );
-  };
+  const oo = useMemo(
+    () => [
+      { id: 1, name: "Score this question (enable quiz mode)" },
+      { id: 2, name: 'Add an "Other" Answer Option ' },
+    ],
+    []
+  );
+
+  const onCheckBoxSelected = useCallback(
+    (index: number, val: { id: number; name: string }[]) => {
+      setCurrentQuestionField(index, "isScore", val.some((opt) => opt.id === 1));
+      setCurrentQuestionField(index, "isOther", val.some((opt) => opt.id === 2));
+    },
+    [setCurrentQuestionField]
+  );
+
+  const selectedOptions = useMemo(
+    () => [
+      ...(currentQuestion.isScore
+        ? [{ id: 1, name: "Score this question (enable quiz mode)" }]
+        : []),
+      ...(currentQuestion.isOther
+        ? [{ id: 2, name: 'Add an "Other" Answer Option ' }]
+        : []),
+    ],
+    [currentQuestion.isScore, currentQuestion.isOther]
+  );
 
   return (
     <div>
       <div className="bg-content2-1003 pt-2">
         <div className="py-6 px-5 flex gap-6 items-center ">
           <p className="font-semibold text-xs text-background-foreground">
-            Q{currentQuestions[index].index + 1}
+            Q{currentQuestion.index + 1}
           </p>
           <InputField
             placeholder="Enter the question"
-            inputValue={currentQuestions[index].question}
+            inputValue={currentQuestion.question}
             onValueChange={(value) =>
-              setCurrentQuestionField(index,"question", value)
+            
+              setCurrentQuestionField(index, "question", value)            
             }
           />
           <SelectInput
             selectOptions={questionTypes}
             placeholder="Select Question Type"
-            selectedKeys={new Set([currentQuestions[index].questionTypeId])}
+            selectedKeys={new Set([currentQuestion.questionTypeId])}
             onSelectionChange={(value: any) =>
-              setCurrentQuestionField(index,"questionTypeId", Array.from(value)[0])
+              setCurrentQuestionField(
+                index,
+                "questionTypeId",
+                Array.from(value)[0]
+              )
             }
           />
         </div>
-        <div className="py-4 px-5 border-y border-content2-1004">
-          <PreDefinedOptions
-            index={index}
-            isSelected={currentQuestions[index].isPreDefinedOptions}
-            setIsSelected={(value) =>
-              setCurrentQuestionField(index,"isPreDefinedOptions", value)
-            }
-            scale={scale}
-            predefinedOptions={predefinedOptions}
-          />
-        </div>
-        <div className="px-9 py-7 ">
-          <CreateOptions 
-            index={index}
-           />
-        </div>
-        <div>
-          <OptionsBox
-            index={index}
-            options={oo}
-            onCheckBoxSelected={onCheckBoxSelected}
-            selectedOptions={[
-              ...(currentQuestions[index].isScore
-                ? [{ id: 1, name: "Score this question (enable quiz mode)" }]
-                : []),
-              ...(currentQuestions[index].isOther
-                ? [{ id: 2, name: 'Add an "Other" Answer Option ' }]
-                : []),
-            ]}
-          />
-        </div>
+        {currentQuestion.questionTypeId && (
+          <div>
+            <div className="py-4 px-5 border-y border-content2-1004">
+              <PreDefinedOptions
+                index={index}
+                isSelected={currentQuestion.isPreDefinedOptions}
+                setIsSelected={(value) =>
+                  setCurrentQuestionField(index, "isPreDefinedOptions", value)
+                }
+                scale={scale}
+                predefinedOptions={predefinedOptions}
+              />
+            </div>
+            <div className="px-9 py-7 ">
+              <CreateOptions index={index} />
+            </div>
+            <div className="flex items-center justify-end gap-2 cursor-pointer pr-10 pb-3" onClick={()=>setIsBulkAnswerOpen(true)}>
+              <div className="p-[2px]  border border-content1-1007 rounded-full">
+                <FiPlus size={14} className="text-content1-1007"/>
+              </div>
+              <p className="font-bold text-[12px] text-content1-1007">
+                BULK ANSWERS
+              </p>
+            </div>
+            <div>
+            <OptionsBox index={index} options={oo} onCheckBoxSelected={onCheckBoxSelected} selectedOptions={selectedOptions} />
+            </div>
+          </div>
+        )}
       </div>
       <div className="px-5 pt-4 flex justify-between">
         <ButtonComponent
@@ -135,6 +148,19 @@ export const QuestionAndOptionsCreation = ({index}:QuestionAndOptionsCreationPro
           />
         </div>
       </div>
+      <Modals
+        isopen={isBulkAnswerOpen}
+        onClose={()=>setIsBulkAnswerOpen(false)}
+        hideCloseButton
+        ModalContents={
+          <div >
+            <BulkAnswers index={index} handleClose={()=>setIsBulkAnswerOpen(false)}/>
+          </div>
+        }
+        bodyClassName="p-0"
+        size="lg"
+        modalClassName="h-[30rem] w-[45rem] overflow-y-auto  scrollbar-hide sm:my-0 "
+      />
     </div>
   );
 };

@@ -4,7 +4,7 @@ import { RiArrowDownSFill } from 'react-icons/ri'
 
 interface PreviewQuestionsProps {
     question?:string,
-    options?:string[],
+    options: {id:number,option:string}[];
 }
 
 export const PreviewQuestions = ({question,options}: PreviewQuestionsProps) => {
@@ -26,7 +26,7 @@ export const PreviewQuestions = ({question,options}: PreviewQuestionsProps) => {
     {options && displayOptions &&
     <ul className=' px-2'>
       {options.map((option,index)=>
-      <li  key={index}>A{index + 1}. {option}</li>)}
+      <li  key={index}>A{index + 1}. {option.option}</li>)}
       </ul>}
    </div>
   )
