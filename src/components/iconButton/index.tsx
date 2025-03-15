@@ -65,7 +65,6 @@ export const IconButtonComponent = ({
 	height = 2.5,
 	width = 2.5,
 	size,
-
 	...rest
 }: IconButtonProps) => {
 	return (

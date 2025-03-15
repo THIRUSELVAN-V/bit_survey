@@ -1,29 +1,44 @@
 import React from "react";
 import { Chip } from "../chip"; // Adjust the import path as needed
 import { ButtonComponent } from "../button"; // Adjust the import path as needed
-import { Avatar, AvatarGroup, Progress } from "@heroui/react"; // Assuming Heroui provides an Avatar component
+import { Avatar, AvatarGroup, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Progress } from "@heroui/react"; // Assuming Heroui provides an Avatar component
 import { BsThreeDotsVertical } from "react-icons/bs"; // Import the three-dot icon
 import { HiOutlinePlusSm } from "react-icons/hi";
+import { FiEdit2 } from "react-icons/fi";
+import { LiaShareAltSolid } from "react-icons/lia";
+import { AiOutlineDelete } from "react-icons/ai";
+import { IoSettingsOutline } from "react-icons/io5";
+import { ShareModel } from "../shareModel";
+import { Modals } from "../modal";
 
 interface SurveyCardProps {
   date?: string;
   surveyName?: string;
   createdBy?: string;
   surveyStatus?:
-    | "Created"
-    | "Draft"
-    | "Scheduled"
-    | "Live"
-    | "Completed"
-    | "Group surveys"
-    | "IncommingSurveyNotStarted"
-    | "IncommingSurveyStarted"
-    | "IncommingSurveyCompleted"
-    | "MentoringLiveCard"
-    | "MentoringCompletedCard";
+  | "Created"
+  | "Draft"
+  | "Scheduled"
+  | "Live"
+  | "Completed"
+  | "Group surveys"
+  | "IncommingSurveyNotStarted"
+  | "IncommingSurveyStarted"
+  | "IncommingSurveyCompleted"
+  | "MentoringLiveCard"
+  | "MentoringCompletedCard";
   totalResponse?: number;
   totalMembers?: number;
 }
+
+const items = [
+  { key: 'edit', label: 'Edit', icon: <FiEdit2 /> },
+  { key: 'share', label: 'Share', icon: <LiaShareAltSolid /> },
+  { key: 'delete', label: 'Delete', icon: <AiOutlineDelete /> },
+  { key: 'permissions', label: 'Permissions', icon: <IoSettingsOutline /> },
+]
+
+
 
 export const SurveyCard: React.FC<SurveyCardProps> = ({
   date,
@@ -33,6 +48,17 @@ export const SurveyCard: React.FC<SurveyCardProps> = ({
   totalResponse = 0,
   totalMembers,
 }) => {
+  const [openShareModel, setOpenShareModel] = React.useState(false);
+const handleItemClick = (key: string) => {
+  if (key === 'share') {
+    setOpenShareModel(true);
+    console.log('share clicked');
+  }
+}
+
+const closeShareModel = () => {
+  setOpenShareModel(false);
+};
   return (
     <div className="p-[0.875rem] rounded-xl  bg-secondary-200 flex flex-col  gap-3">
       {/* Header Section with Chip/Title and Three-Dot Icon */}
@@ -49,7 +75,7 @@ export const SurveyCard: React.FC<SurveyCardProps> = ({
             chipClass="px-3 py-4 rounded-[12px] bg-warning-400"
             textClassName="text-warning-500 font-medium text-[14px]"
           />
-        ) : (surveyStatus === "IncommingSurveyCompleted" || surveyStatus==="MentoringCompletedCard") ? (
+        ) : (surveyStatus === "IncommingSurveyCompleted" || surveyStatus === "MentoringCompletedCard") ? (
           <Chip
             label="Completed"
             chipClass="px-3 py-4 rounded-[12px] bg-transparent border border-success-600"
@@ -60,10 +86,34 @@ export const SurveyCard: React.FC<SurveyCardProps> = ({
         )}
 
         {/* Three-Dot Icon (always rendered at the right end) */}
-        <BsThreeDotsVertical
-          size={18}
-          className=" text-content2-800 cursor-pointer"
-        />
+        <Dropdown
+          placement='right-start'
+          className='min-w-fit w-fit bg-white border'>
+          <DropdownTrigger>
+            <BsThreeDotsVertical
+              size={18}
+              className=" text-content2-800 cursor-pointer"
+            />
+          </DropdownTrigger>
+          <DropdownMenu aria-label="Dynamic Actions" items={items}
+            className='bg-white'>
+            {(item) => (
+              <DropdownItem
+                key={item.key}
+                className='font-bold hover:bg-primary-50'
+                classNames={{ base: 'hover:!bg-primary-50' }}
+                startContent={item.icon}
+                onPress={() => { handleItemClick(item.key) }}
+              >
+                {item.label}
+              </DropdownItem>
+            )}
+          </DropdownMenu>
+        </Dropdown>
+
+
+     
+
       </div>
 
       {/* Subtitle and Description */}
@@ -72,7 +122,7 @@ export const SurveyCard: React.FC<SurveyCardProps> = ({
       <p className="text-base text-content1-1001 ">{createdBy}</p>
 
       {/* Progress Bar */}
-      {(surveyStatus !== "Scheduled" && surveyStatus!=="IncommingSurveyCompleted" && surveyStatus!=="MentoringCompletedCard") && (
+      {(surveyStatus !== "Scheduled" && surveyStatus !== "IncommingSurveyCompleted" && surveyStatus !== "MentoringCompletedCard") && (
         <div className="">
           <Progress
             className="max-w-md"
@@ -80,21 +130,19 @@ export const SurveyCard: React.FC<SurveyCardProps> = ({
             value={totalResponse}
             aria-label="Progress"
             classNames={{
-              indicator: `${
-                surveyStatus === "Draft"
-                  ? "bg-content1-1002"
-                  :( surveyStatus === "Live" || surveyStatus === "IncommingSurveyNotStarted" || surveyStatus === "IncommingSurveyStarted" || surveyStatus === "MentoringLiveCard")
+              indicator: `${surveyStatus === "Draft"
+                ? "bg-content1-1002"
+                : (surveyStatus === "Live" || surveyStatus === "IncommingSurveyNotStarted" || surveyStatus === "IncommingSurveyStarted" || surveyStatus === "MentoringLiveCard")
                   ? "bg-warning"
                   : surveyStatus === "Completed" ||
                     surveyStatus === "Group surveys"
-                  ? "bg-success-foreground"
-                  : ""
-              }`,
-              base: `${
-                surveyStatus === "Completed" || surveyStatus === "Group surveys"
-                  ? "border-[0.5px] rounded-full border-success-100"
-                  : ""
-              }`,
+                    ? "bg-success-foreground"
+                    : ""
+                }`,
+              base: `${surveyStatus === "Completed" || surveyStatus === "Group surveys"
+                ? "border-[0.5px] rounded-full border-success-100"
+                : ""
+                }`,
             }}
           />
           <div className="flex font-regular text-sm text-content1-1001 justify-between max-w-md">
@@ -108,8 +156,8 @@ export const SurveyCard: React.FC<SurveyCardProps> = ({
           </div>
         </div>
       )}
-      <div className={`flex ${(surveyStatus === "Live" || surveyStatus === "IncommingSurveyNotStarted" || surveyStatus === "IncommingSurveyStarted" || surveyStatus==="Group surveys" || surveyStatus === "MentoringLiveCard")?"justify-between":"justify-end"} items-center `}>
-        {(surveyStatus === "Live" || surveyStatus === "IncommingSurveyNotStarted" || surveyStatus === "IncommingSurveyStarted" ||surveyStatus==="Group surveys" || surveyStatus === "MentoringLiveCard") && (
+      <div className={`flex ${(surveyStatus === "Live" || surveyStatus === "IncommingSurveyNotStarted" || surveyStatus === "IncommingSurveyStarted" || surveyStatus === "Group surveys" || surveyStatus === "MentoringLiveCard") ? "justify-between" : "justify-end"} items-center `}>
+        {(surveyStatus === "Live" || surveyStatus === "IncommingSurveyNotStarted" || surveyStatus === "IncommingSurveyStarted" || surveyStatus === "Group surveys" || surveyStatus === "MentoringLiveCard") && (
           <div className=" ">
             <AvatarGroup
               size="sm"
@@ -131,12 +179,12 @@ export const SurveyCard: React.FC<SurveyCardProps> = ({
             </AvatarGroup>
           </div>
         )}
-        {(surveyStatus === "Created" || surveyStatus === "IncommingSurveyNotStarted" || surveyStatus === "IncommingSurveyStarted" || surveyStatus === "IncommingSurveyCompleted" || surveyStatus === "Draft" || surveyStatus==="MentoringCompletedCard") && (
+        {(surveyStatus === "Created" || surveyStatus === "IncommingSurveyNotStarted" || surveyStatus === "IncommingSurveyStarted" || surveyStatus === "IncommingSurveyCompleted" || surveyStatus === "Draft" || surveyStatus === "MentoringCompletedCard") && (
           <ButtonComponent
             isIcon={false}
             ButtonVariant="solid"
-            buttonText={surveyStatus==="IncommingSurveyStarted"?"Resume":(surveyStatus==="IncommingSurveyCompleted" || surveyStatus==="MentoringCompletedCard")?"View":"Start"}
-            bgColor={surveyStatus==="IncommingSurveyStarted"?"bg-warning-700":"bg-success"}
+            buttonText={surveyStatus === "IncommingSurveyStarted" ? "Resume" : (surveyStatus === "IncommingSurveyCompleted" || surveyStatus === "MentoringCompletedCard") ? "View" : "Start"}
+            bgColor={surveyStatus === "IncommingSurveyStarted" ? "bg-warning-700" : "bg-success"}
             baseClassName="w-fit px-7 rounded-[4px] py-2 h-fit border-none "
             textClassName="font-bold text-[14px] text-background"
           />
@@ -183,6 +231,13 @@ export const SurveyCard: React.FC<SurveyCardProps> = ({
           />
         )}
       </div>
+      <Modals
+          isopen={openShareModel}
+          hideCloseButton
+          bodyClassName="w-[40rem]"
+          ModalContents={<ShareModel 
+            onCloseModel={closeShareModel} />}
+        />
     </div>
   );
 };

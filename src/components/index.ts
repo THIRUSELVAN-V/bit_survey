@@ -59,4 +59,10 @@ export{TextAreaComp} from './textArea'
 export {PreviewModel} from './PreviewModel'
 
 export {  StudentFilter} from './StudentFilter'
+
 export {BulkAnswers} from './bulkAnswers'
+
+export { ShareModel } from './shareModel'
+
+export { UserSurvey } from './userSurvey'
+
