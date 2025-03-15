@@ -4,10 +4,13 @@ import { TabBar } from "../../components/switchTab";
 import { PlusShield } from "../../assets/plusShield";
 import { PreviewModel } from "../../components/PreviewModel";
 import Login from "../login";
+import { UserSurveyData } from "../../components/userSurvey/utiles";
 
 
 
 export const Darsa = () => {
+
+  const SurveyData = UserSurveyData()
 
   const [activeTab, setActiveTab] = React.useState('tab1');
 
@@ -107,7 +110,9 @@ Hexagon'
 
       {/* <BulkAnswers/> */}
 
-      <UserSurvey />
+
+
+<UserSurvey/>
 
 
     </div>

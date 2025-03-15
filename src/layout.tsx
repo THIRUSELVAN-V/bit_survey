@@ -6,7 +6,7 @@ export const Layout = () => {
   const location = useLocation()
   const isLogin = location.pathname === "/login"
   return (
-    <div className=" h-screen  grid grid-cols-6 bg-content1-50">
+    <div className="h-screen  grid grid-cols-6 bg-content1-50">
         {!isLogin &&(
         <div className="hidden md:block">
         <SideBar />
