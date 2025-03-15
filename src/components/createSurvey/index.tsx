@@ -6,16 +6,27 @@ import { QuestionDisplay } from "../questionDisplay";
 import { PreviewModel } from "../PreviewModel";
 
 export const CreateSurvey = () => {
-  const { currentQuestions, questions, survey, deleteOuestion } =
+  const { currentQuestions, questions, survey, deleteOuestion, } =
     useQuestionStore();
+    console.log("ff",currentQuestions);
+    
   const [isPreviewOpen, setIsPreviewOpen] = React.useState(false);
 
-  const handleDelete = (questionId: number) => {
+  const handleDelete = React.useCallback((questionId: number) => {
     deleteOuestion(survey.id, questionId);
-  };
+  }, [survey.id, deleteOuestion]);
+  const modalContents = React.useMemo(() => (
+    <div>
+      <PreviewModel handleClose={() => setIsPreviewOpen(false)} />
+    </div>
+  ), []);
+  // React.useEffect(() => {
+    
+  // }, []);
+  
 
   return (
-    <div className="">
+    <div>
       <p className="font-bold text-[22px] text-content2-800 pb-5 ">
         {survey.name || "Untittled"}
       </p>
@@ -34,8 +45,8 @@ export const CreateSurvey = () => {
           />
         ))}
       </div>
-      {currentQuestions.map((_, index) => (
-        <CreateQuestion key={index} index={index} />
+      {currentQuestions.map((question) => (
+        <CreateQuestion key={question.index} index={question.index} />
       ))}
       <div className="bg-content2-1007 my-4 p-1 cursor-pointer flex justify-center items-center" onClick={() => setIsPreviewOpen(true)}>
         <p className="font-medium text-sm text-content2-400">
@@ -46,13 +57,7 @@ export const CreateSurvey = () => {
         isopen={isPreviewOpen}
         onClose={() => setIsPreviewOpen(false)}
         hideCloseButton
-        ModalContents={
-          <div className="">
-            <PreviewModel 
-              handleClose={()=>setIsPreviewOpen(false)}
-            />
-          </div>
-        }
+        ModalContents={modalContents}
         bodyClassName="p-0"
         size="lg"
         modalClassName="h-[37.5rem] w-[54.438rem] overflow-y-auto  scrollbar-hide sm:my-0 "

@@ -5,10 +5,15 @@ import React from "react";
 
 export const SurveyCreation = () => {
   const {id} = useParams();
-  console.log(id)
-  const {fetchAllQuestions}=useQuestionStore()
+  // console.log(id)
+  const {fetchAllQuestions,getPredefinedOptions,getQuestionTypes,survey}=useQuestionStore()
   React.useEffect(()=>{
-    fetchAllQuestions(Number(id))
+    getPredefinedOptions();
+    getQuestionTypes();
+    if(!survey.id){
+
+      fetchAllQuestions(Number(id))
+    }
   },[])
   return (
     <div className="bg-background min-h-full rounded-xl p-5 ">

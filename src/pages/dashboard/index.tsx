@@ -164,6 +164,10 @@ export const Dashboard = () => {
     setSurveyName("")
     setOpenSurveyNamePopup(false);
   };
+  const handleSurveyCreate = async() => {
+    const res = await createSurvey(surveyName);  
+    navigate("/surveyCreation/"+res)
+  }
 
   return (
     <div
@@ -227,7 +231,7 @@ export const Dashboard = () => {
               Button1BaseClassName="border border-secondary-700 bg-transparent"
               Button1textClassName="text-secondary-1001"
               onButton1Click={handleCloseSurveyNamePopup}
-              onButton2Click={async()=>{await createSurvey(surveyName);  navigate("/surveyCreation/"+survey?.id) }}
+              onButton2Click={()=>{handleSurveyCreate();}}
             />
           </div>
         }

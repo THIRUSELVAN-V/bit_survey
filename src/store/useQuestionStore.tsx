@@ -44,9 +44,24 @@ interface QuestionStore {
 
   getPredefinedOptions: () => Promise<void>
   getQuestionTypes: () => Promise<void>
-  createSurvey: (name:string) => Promise<void>
+  createSurvey: (name:string) => Promise<any>
 
 }
+export const defaultQuestion = {
+  index: 0,
+  question: "",
+  questionTypeId: null,
+  scaleId: null,
+  preDefinedOptionsId: null,
+  isPreDefinedOptions: false,
+  isScore: false,
+  isOther: false,
+  options: [
+    { id: 1, option: "" },
+    { id: 2, option: "" },
+    { id: 3, option: "" },
+  ],
+};
 
 export const useQuestionStore = create<QuestionStore>((set,get) => ({
 
@@ -70,50 +85,31 @@ export const useQuestionStore = create<QuestionStore>((set,get) => ({
     },
   ],
   setCurrentQuestionField: (index, field, value) => {
-    set((state) => ({
-      currentQuestions: state.currentQuestions.map((q, i) =>
-        i === index ? { ...q, [field]: value } : q
-      ),
-    }));
+    set((state) => {
+      const updatedQuestions = [...state.currentQuestions];
+      updatedQuestions[index] = { ...updatedQuestions[index], [field]: value };
+      return { currentQuestions: updatedQuestions };
+    });
   },
   setCurrentQuestionsFromPreview: (previewData) => {
     set({
-      currentQuestions: previewData.map((question, index) => ({
+      currentQuestions: previewData.map(({question, options }, index) => ({
         index,
-        question: question.question,
+        question,
         questionTypeId: 1,
         scaleId: null,
         preDefinedOptionsId: null,
         isPreDefinedOptions: false,
         isScore: false,
         isOther: false,
-        options: question.options.map((opt) => ({
-          id: opt.id,
-          option: opt.option,
-        })),
+        options: options.map(({ id, option }) => ({ id, option })),
       })),
     });
   },
   addNewQuestion: () => {
+    
     set((state) => ({
-      currentQuestions: [
-        ...state.currentQuestions,
-        {
-          index: state.currentQuestions.length,
-          question: "",
-          questionTypeId: null,
-          scaleId: null,
-          preDefinedOptionsId: null,
-          isPreDefinedOptions: false,
-          isScore: false,
-          isOther: false,
-          options: [
-            { id: 1, option: "" },
-            { id: 2, option: "" },
-            { id: 3, option: "" },
-          ],
-        },
-      ],
+      currentQuestions: [...state.currentQuestions, { ...defaultQuestion, index: state.currentQuestions.length }],
     }));
   },
   
@@ -131,7 +127,7 @@ export const useQuestionStore = create<QuestionStore>((set,get) => ({
       optionsType: "def",
       options: question.options.map((opt) => ({ name: opt.option })),
     }));
-    console.log("questionPayloads",questionPayloads);
+    // console.log("questionPayloads",questionPayloads);
 
     try {
       for (const payload of questionPayloads) {
@@ -143,23 +139,7 @@ export const useQuestionStore = create<QuestionStore>((set,get) => ({
       fetchAllQuestions(survey?.id);
 
       // Reset state after submission
-      set({ currentQuestions: [
-        {
-          index: 0,
-          question: "",
-          questionTypeId: null,
-          scaleId: null,
-          preDefinedOptionsId: null,
-          isPreDefinedOptions: false,
-          isScore: false,
-          isOther: false,
-          options: [
-            { id: 1, option: "" },
-            { id: 2, option: "" },
-            { id: 3, option: "" },
-          ],
-        },
-      ], });
+      set({ currentQuestions: [{ ...defaultQuestion }] });
     } catch (err) {
       console.error("Error adding questions:", err);
     }
@@ -219,13 +199,9 @@ export const useQuestionStore = create<QuestionStore>((set,get) => ({
   //   }
   // },
   fetchAllQuestions: async (surveyId) => {
-    const url= `api/survey/get/${surveyId}`
     try {
-      const response:any = await getRequest(url);
-      set({ questions: response.data.surveyQuestions || [] as any});
-      set({survey:response.data})
-      console.log("srr",response.data);
-      
+      const response: any = await getRequest(`api/survey/get/${surveyId}`);
+      set({ questions: response.data.surveyQuestions || [], survey: response.data });
     } catch (err) {
       console.error("Error fetching questions:", err);
     }
@@ -234,8 +210,8 @@ export const useQuestionStore = create<QuestionStore>((set,get) => ({
     const {fetchAllQuestions,survey} = get()
     try{
       const response = await postRequest("/api/survey/deletequestion",{surveyId:surveyId,questionId:questionId})
-      console.log(response);
-      fetchAllQuestions(survey?.id)
+      // console.log(response);
+      await fetchAllQuestions(survey?.id)
       
     }catch(err){
       console.log(err);
@@ -247,7 +223,8 @@ export const useQuestionStore = create<QuestionStore>((set,get) => ({
     const {fetchAllQuestions} = get()
     try{
       const response:any = await postRequest("/api/survey/create",{name:name})
-      fetchAllQuestions(response.data.id)
+      await fetchAllQuestions(response?.data?.id)
+      return response?.data?.id
       
     }catch(err){
       console.log(err);
@@ -275,20 +252,11 @@ export const useQuestionStore = create<QuestionStore>((set,get) => ({
     set({ requestState: DEFAULT_REQUEST_LOADING });
     try{
       const response: any = await getRequest(API?.PredefinedOptiond);
-      console.log(response);
+      // console.log(response);
       set({
-        predefinedOptions: response.data.map((item:any) => ({
-          id: item.id,
-          label: item.type
-      })),
-          
-        requestState: {
-            loading: false,
-            error: false,
-            message: 'predefinedOptions fetched successfully',
-            status: response.status
-        }
-    });
+        predefinedOptions: response.data.map(({ id, type }:{id:number; type:string}) => ({ id, label: type })),
+        requestState: { loading: false, error: false, message: "Fetched successfully", status: response.status },
+      });
       
     }catch(err){
       console.log(err);
@@ -299,13 +267,11 @@ export const useQuestionStore = create<QuestionStore>((set,get) => ({
     set({ requestState: DEFAULT_REQUEST_LOADING });
     try{
       const response:any = await getRequest(API?.QuestionTypes);
-      console.log(response);
+      // console.log(response);
       set({
-        questionTypes:response.data.map((item:any)=>({
-          id:item.id,
-          label:item.name,
-        }))
-      })
+        questionTypes: response.data.map(({ id, name }:{id:number; name:string}) => ({ id, label: name })),
+        requestState: { loading: false, error: false, message: "Fetched successfully", status: response.status },
+      });
       
 
     }catch(err){

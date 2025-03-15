@@ -6,7 +6,7 @@ import { useQuestionStore } from '../../store/useQuestionStore'
 export const BulkAnswers = ({index ,handleClose=()=>false}:{index:number; handleClose?:()=>void;}) => {
 
   const {currentQuestions,setCurrentQuestionField} =useQuestionStore()
-  console.log("burr:",currentQuestions[index]);
+  // console.log("burr:",currentQuestions[index]);
   
 
   const [bulkAnswersText, setBulkAnswersText] = React.useState('')
@@ -47,7 +47,7 @@ export const BulkAnswers = ({index ,handleClose=()=>false}:{index:number; handle
   // Update the state with the new options array
   setCurrentQuestionField(index, "options", updatedOptions);
 
-  console.log('Updated options:', updatedOptions);
+  // console.log('Updated options:', updatedOptions);
     
   }
 
