@@ -9,6 +9,7 @@ import {
   DisplayQuestion,
   SurveyCreation,
 } from "../pages";
+
 import Login from "../pages/login";
 
 import { Response } from "../pages/Response";
@@ -22,7 +23,7 @@ export const PublicRoute = () => {
       <Route path="/thiru" element={<Thiru />} />
       <Route path="/darsa" element={<Darsa />} />
       <Route path="/templates" element={<Templates />} />
-      <Route path="/surveyCreation" element={<SurveyCreation />} />
+      <Route path="/surveyCreation/:id" element={<SurveyCreation />} />
       <Route path="/question" element={<DisplayQuestion />} />
       <Route path="/login" element={<Login />} />
       <Route path="/response" element={<Response/>} />

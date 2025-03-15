@@ -25,6 +25,26 @@ export const Thiru = () => {
   };
   return (
     <div className=" ">
+      <div className="p-5 ">
+        <ComonPopup
+          icon={<FeaturedTickIcon/>}
+          bodyContent={
+                        <div >
+                          <InputField
+                            placeholder="Survey Name"
+                            baseClaseName="rounded-[10px]"
+                          />
+                        </div>
+                      }
+          button1Text="Cancel"
+          button2Text="Create Survey"
+          Button1Variant="bordered"
+          Button2Variant="bordered"
+          button1Bgcolor="bg-transparent"
+          Button1BaseClassName="border border-secondary-700 bg-transparent"
+          Button1textClassName="text-secondary-1001"
+        />
+      </div>
       
       <div className="p-5">
         <ComonPopup
@@ -34,6 +54,7 @@ export const Thiru = () => {
           button2Text="Create new"
           Button1Variant="solid"
           Button2Variant="solid"
+          Button1BaseClassName="border-none"
         />
       </div>
       

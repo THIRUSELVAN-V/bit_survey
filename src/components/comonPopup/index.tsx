@@ -13,6 +13,8 @@ interface ComonPopupProp{
     Button2BaseClassName?:string;
     Button1textClassName?:string;
     Button2textClassName?:string;
+    button1Bgcolor?:string;
+    button2Bgcolor?:string;
     onButton1Click?:()=>void;
     onButton2Click?:()=>void;
 
@@ -29,6 +31,8 @@ export const ComonPopup = ({
     Button2BaseClassName,
     Button1textClassName,
     Button2textClassName,
+    button1Bgcolor="bg-primary",
+    button2Bgcolor="bg-primary" ,
     onButton1Click=()=>false,
     onButton2Click=()=>false,
 }:ComonPopupProp) => {
@@ -41,8 +45,8 @@ export const ComonPopup = ({
                 isIcon={false}
                 buttonText={button1Text}
                 ButtonVariant={Button1Variant}
-                bgColor="bg-primary"
-                baseClassName={cn("bg-primary border-none",Button1BaseClassName)}
+                bgColor={button1Bgcolor}
+                baseClassName={cn("bg-primary",Button1BaseClassName)}
                 textClassName={cn("text-background font-semibold text-[16px]",Button1textClassName)}
                 handleOnClick={onButton1Click}
             />
@@ -50,7 +54,7 @@ export const ComonPopup = ({
                 isIcon={false}
                 buttonText={button2Text}
                 ButtonVariant={Button2Variant}
-                bgColor="bg-primary"
+                bgColor={button2Bgcolor}
                 baseClassName={cn("bg-primary border-none",Button2BaseClassName)}
                 textClassName={cn("text-background font-semibold text-[16px]",Button2textClassName)}
                 handleOnClick={onButton2Click}

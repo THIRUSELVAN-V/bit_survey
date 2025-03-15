@@ -1,5 +1,5 @@
 import React from "react";
-import { BulkAnswers, Chip, NumberInputComp, QuestionDisplay, SelectInput, SideBar, SurveyCard, SurveyOption, TableSurvey, TextAreaComp } from "../../components"
+import { BulkAnswers, Chip, NumberInputComp, QuestionDisplay, SelectInput, ShareModel, SideBar, SurveyCard, SurveyOption, TableSurvey, TextAreaComp, UserSurvey } from "../../components"
 import { TabBar } from "../../components/switchTab";
 import { PlusShield } from "../../assets/plusShield";
 import { PreviewModel } from "../../components/PreviewModel";
@@ -41,7 +41,9 @@ export const Darsa = () => {
   ];
 
   return (
-    <div className="bg-background h-full rounded-md">
+    <div className=" h-full rounded-md">
+
+
       {/* <Chip
         label="Primary Chip"
         chipVariant="primary"
@@ -70,7 +72,7 @@ export const Darsa = () => {
       />
 
       {/* <SideBar /> */}
-{/* <div className="w-[35vh]">
+      {/* <div className="w-[35vh]">
       <SurveyOption
         iconBgColor="bg-primary-600"
         icon={<PlusShield/>}
@@ -80,7 +82,7 @@ export const Darsa = () => {
       />
 </div>  */}
 
-{/* <TextAreaComp 
+      {/* <TextAreaComp 
 className='border-2 border-gray-200 px-3 py-2'
 placeholder='Add each question and answer choice on its own line. Press enter on your keyboard twice to separate each question.
 
@@ -99,9 +101,13 @@ Square
 Hexagon'
 /> */}
 
-<PreviewModel/>
+      {/* <PreviewModel/> */}
 
-{/* <BulkAnswers/> */}
+      {/* <DropdownComp/> */}
+
+      {/* <BulkAnswers/> */}
+
+      <UserSurvey />
 
 
     </div>
