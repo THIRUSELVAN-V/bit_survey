@@ -47,7 +47,7 @@ export const Modals = ({
       size={size} // Setting the modal size to "small"
       radius="lg" // Applying large border-radius to the modal
       classNames={{
-        body: cn("p-6 pb-2", bodyClassName), // Adding padding to the modal body
+        body: cn("p-4 pb-2", bodyClassName), // Adding padding to the modal body
         footer: footerStyles,
       }}
     >
