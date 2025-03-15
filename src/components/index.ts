@@ -64,4 +64,5 @@ export {BulkAnswers} from './bulkAnswers'
 
 export { ShareModel } from './shareModel'
 
+export { UserSurvey } from './userSurvey'
 

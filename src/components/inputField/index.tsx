@@ -10,7 +10,8 @@ interface InputFieldProps {
 	radius?:"sm" | "md" | "lg" | "none" | "full" | undefined;
 	baseClaseName?:string;
 	isDisabled?:boolean;
-	type?:string
+	type?:string;
+	endContent?:React.ReactNode;
 }
 
 export const InputField = ({
@@ -23,6 +24,7 @@ export const InputField = ({
 	baseClaseName,
 	type="text",
 	isDisabled=false,
+	endContent
 
 }: InputFieldProps) => {
 	
@@ -38,6 +40,7 @@ export const InputField = ({
           size={size}
           radius={radius}
 		  type={type}
+		  endContent={endContent}
           classNames={{
             base:cn("bg-background border border-content2-1004 ",baseClaseName),
             inputWrapper:"border-none"
