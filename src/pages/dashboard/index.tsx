@@ -6,20 +6,32 @@ import {
   SurveyCard,
   SurveyOption,
   TabBar,
-  GroupCreation
+  GroupCreation,
 } from "../../components";
-import { FeaturedTickIcon, PlusShield, ShieldIcon } from "../../assets";
+import {
+  FeaturedTickIcon,
+  PlusIcon,
+  PlusShield,
+  ShieldIcon,
+} from "../../assets";
 import { surveyCardsData } from "./utils";
 import { useNavigate } from "react-router-dom";
 import { getRequest } from "../../util/axios";
 import { useSkillStore } from "../../store/group";
+import { InputField } from "../../components/inputField";
+import { useQuestionStore } from "../../store/useQuestionStore";
 export const Dashboard = () => {
   const [isSurvey, setIsSurvey] = React.useState(true);
+
+
+  const {createSurvey,survey} = useQuestionStore()
+  const [surveyName,setSurveyName] = React.useState("")
+  
 
   const [filterGroup, setFilterGroup] = React.useState([]);
   const [rpBelowValue, setRpBelowValue] = React.useState<number | null>(null);
   const [rpAboveValue, setRpAboveValue] = React.useState<number | null>(null);
-  const skillbackend = useSkillStore((state) => state.getSkillfromBackend)
+  const skillbackend = useSkillStore((state) => state.getSkillfromBackend);
   const navigate = useNavigate();
 
   const handleGroupCreationSubmit = () => {
@@ -52,7 +64,7 @@ export const Dashboard = () => {
   ];
   useEffect(() => {
     skillbackend();
-      }, []);
+  }, []);
 
   const [activeTab, setActiveTab] = React.useState("tab1");
 
@@ -65,6 +77,16 @@ export const Dashboard = () => {
 
     return (
       <div className="grid grid-cols-3 pt-5 gap-14">
+        {filterStatus?.includes("Group surveys") && (
+          <div className="bg-secondary-200 flex flex-col justify-center items-center gap-5 cursor-pointer rounded-xl">
+            <div className="border border-primary p-8 rounded-full ">
+              <PlusIcon />
+            </div>
+            <p className="font-regular text-base text-content2-500">
+              Create new group survey
+            </p>
+          </div>
+        )}
         {filteredData.map((card) => (
           <SurveyCard
             key={card.id} // Add key for better React performance
@@ -113,14 +135,16 @@ export const Dashboard = () => {
       console.log("clik");
       handleOpenGroupCreationpopup();
     }
-    if(val==="Create survey"){
-      navigate("surveyCreation");
+    if (val === "Create survey") {
+      handleOpenSurveyNamePopup();
+      // navigate("surveyCreation");
     }
   };
 
   const [openGroupCreationpopup, setOpenGroupCreationpopup] =
     React.useState(false);
   const [openNewSurveyPopup, setOpenNewSurveyPopup] = React.useState(false);
+  const [openSurveyNamePopup, setOpenSurveyNamePopup] = React.useState(false);
   const handleOpenGroupCreationpopup = () => {
     setOpenGroupCreationpopup(true);
   };
@@ -133,6 +157,17 @@ export const Dashboard = () => {
   const handleCloseNewSurveyPopup = () => {
     setOpenNewSurveyPopup(false);
   };
+  const handleOpenSurveyNamePopup = () => {
+    setOpenSurveyNamePopup(true);
+  };
+  const handleCloseSurveyNamePopup = () => {
+    setSurveyName("")
+    setOpenSurveyNamePopup(false);
+  };
+  const handleSurveyCreate = async() => {
+    const res = await createSurvey(surveyName);  
+    navigate("/surveyCreation/"+res)
+  }
 
   return (
     <div
@@ -170,23 +205,59 @@ export const Dashboard = () => {
         )}
       </div>
       <Modals
+        isopen={openSurveyNamePopup}
+        onClose={handleCloseSurveyNamePopup}
+        hideCloseButton
+        ModalContents={
+          <div className="">
+            <ComonPopup
+              icon={<FeaturedTickIcon />}
+              bodyContent={
+                <div>
+                  <p className="font-semibold text-[19px] text-content2-100 pb-3">Enter survey name</p>
+                  <InputField
+                    placeholder="Survey Name"
+                    baseClaseName="rounded-[10px]"
+                    inputValue={surveyName}
+                    onValueChange={setSurveyName}
+                  />
+                </div>
+              }
+              button1Text="Cancel"
+              button2Text="Create Survey"
+              Button1Variant="bordered"
+              Button2Variant="bordered"
+              button1Bgcolor="bg-transparent"
+              Button1BaseClassName="border border-secondary-700 bg-transparent"
+              Button1textClassName="text-secondary-1001"
+              onButton1Click={handleCloseSurveyNamePopup}
+              onButton2Click={()=>{handleSurveyCreate();}}
+            />
+          </div>
+        }
+        bodyClassName="p-0"
+        size="lg"
+        modalClassName="h-[18rem] overflow-y-auto  scrollbar-hide sm:my-0 w-[25rem]"
+      />
+      <Modals
         isopen={openNewSurveyPopup}
         onClose={handleCloseNewSurveyPopup}
         hideCloseButton
         ModalContents={
           <div className="">
-          <ComonPopup
-            icon={<FeaturedTickIcon />}
-            bodyContent={
-              <p className="font-semibold text-[19px] text-content2-100">
-                Choose your choice
-              </p>
-            }
-            button1Text="templates"
-            button2Text="Create new"
-            onButton1Click={()=>navigate("/templates")}
-            onButton2Click={()=>navigate("/surveyCreation")}
-          />
+            <ComonPopup
+              icon={<FeaturedTickIcon />}
+              bodyContent={
+                <p className="font-semibold text-[19px] text-content2-100">
+                  Choose your choice
+                </p>
+              }
+              button1Text="templates"
+              button2Text="Create new"
+              Button1BaseClassName="border-none"
+              onButton1Click={() => navigate("/templates")}
+              onButton2Click={() => navigate("/surveyCreation")}
+            />
           </div>
         }
         bodyClassName="p-0"

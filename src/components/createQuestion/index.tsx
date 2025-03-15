@@ -1,15 +1,20 @@
-import React from "react";
+import  { useMemo, useState } from "react";
 import { TabBar } from "../switchTab";
 import { QuestionAndOptionsCreation } from "../questionAndOptionsCreation";
 interface CreateQuestionProps{
   index:number;
 }
 export const CreateQuestion = ({index}:CreateQuestionProps) => {
-  const [activeTab, setActiveTab] = React.useState("tab1");
-  const tabs = [
-    { id: "tab1", label: "EDIT", content: <div className=""><QuestionAndOptionsCreation index={index}/></div> },
-    { id: "tab2", label: "OPTIONS", content: <div> hi</div> },
-  ];
+  const [activeTab, setActiveTab] = useState("EDIT");
+
+  // Memoize the tabs array to prevent unnecessary re-renders
+  const tabs = useMemo(
+    () => [
+      { id: "EDIT", label: "EDIT", content: <div> <QuestionAndOptionsCreation index={index} /></div> },
+      { id: "OPTIONS", label: "OPTIONS", content: <div> hi</div> },
+    ],
+    [index]
+  );
   return (
     <div className="border border-content2-1002 rounded-sm">
       <TabBar

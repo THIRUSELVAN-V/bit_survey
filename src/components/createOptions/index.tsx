@@ -11,7 +11,7 @@ interface CreateOptionsProps{
 export const CreateOptions = ({index}:CreateOptionsProps) => {
   
   const {currentQuestions,setCurrentQuestionField} = useQuestionStore()
-  console.log("CreateOptions",currentQuestions);
+  // console.log("CreateOptions",currentQuestions);
 
   const handleOptionChange = (id: number, value: string) => {
     const updatedOptions = currentQuestions[index].options.map((option) =>
@@ -35,7 +35,7 @@ export const CreateOptions = ({index}:CreateOptionsProps) => {
     setCurrentQuestionField(index,"options",currentQuestions[index].options.filter((option) => option.id !== id));
   };
 
-  console.log(currentQuestions[index].options);
+  // console.log(currentQuestions[index].options);
   
   return (
     <div className="flex flex-col gap-6">
